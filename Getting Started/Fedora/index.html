@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fedora &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Fedora Root on ZFS" href="Fedora Root on ZFS.html" />
+    <link rel="prev" title="Debian GNU Linux initrd documentation" href="../Debian/Debian GNU Linux initrd documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../index.html"><img src="../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Arch Linux/index.html">Arch Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Debian/index.html">Debian</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fedora</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contents">Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Fedora Root on ZFS.html">Fedora Root on ZFS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-repo">Testing Repo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#root-on-zfs">Root on ZFS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/0-overview.html">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/1-preparation.html">Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/2-system-installation.html">System Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/5-bootloader.html">Bootloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/6-recovery.html">Recovery</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD.html">FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS">Gentoo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NixOS/index.html">NixOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openSUSE/index.html">openSUSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RHEL-based distro/index.html">RHEL-based distro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Ubuntu/index.html">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Man Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+      <li>Fedora</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/openzfs/openzfs-docs/blob/master/docs/Getting Started/Fedora/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="fedora">
+<h1>Fedora<a class="headerlink" href="#fedora" title="Permalink to this headline"></a></h1>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Fedora Root on ZFS.html">Fedora Root on ZFS</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<p>Note: this is for installing ZFS on an existing Fedora
+installation. To use ZFS as root file system,
+see below.</p>
+<ol class="arabic">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">zfs-fuse</span></code> from official Fedora repo is installed,
+remove it first. It is not maintained and should not be used
+under any circumstance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rpm</span> <span class="o">-</span><span class="n">e</span> <span class="o">--</span><span class="n">nodeps</span> <span class="n">zfs</span><span class="o">-</span><span class="n">fuse</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add ZFS repo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zfsonlinux</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">fedora</span><span class="o">/</span><span class="n">zfs</span><span class="o">-</span><span class="n">release</span><span class="o">-</span><span class="n">fedora</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mf">1.</span><span class="n">noarch</span><span class="o">.</span><span class="n">rpm</span>
+</pre></div>
+</div>
+<p>List of repos is available <a class="reference external" href="https://github.com/zfsonlinux/zfsonlinux.github.com/tree/master/fedora">here</a>.</p>
+</li>
+<li><p>Install kernel headers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">kernel</span><span class="o">-</span><span class="n">devel</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">kernel-devel</span></code> package must be installed before <code class="docutils literal notranslate"><span class="pre">zfs</span></code> package.</p>
+</li>
+<li><p>Install ZFS packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">zfs</span>
+</pre></div>
+</div>
+</li>
+<li><p>Load kernel module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modprobe</span> <span class="n">zfs</span>
+</pre></div>
+</div>
+<p>If kernel module can not be loaded, your kernel version
+might be not yet supported by OpenZFS.</p>
+<p>An option is to an LTS kernel from COPR, provided by a third-party.
+Use it at your own risk:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># kwizart/kernel-longterm-5.10</span>
+<span class="c1"># kwizart/kernel-longterm-4.19</span>
+<span class="n">dnf</span> <span class="n">copr</span> <span class="n">enable</span> <span class="o">-</span><span class="n">y</span> <span class="n">kwizart</span><span class="o">/</span><span class="n">kernel</span><span class="o">-</span><span class="n">longterm</span><span class="o">-</span><span class="mf">5.4</span>
+<span class="n">dnf</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">kernel</span><span class="o">-</span><span class="n">longterm</span> <span class="n">kernel</span><span class="o">-</span><span class="n">longterm</span><span class="o">-</span><span class="n">devel</span>
+</pre></div>
+</div>
+<p>Reboot to new LTS kernel, then load kernel module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modprobe</span> <span class="n">zfs</span>
+</pre></div>
+</div>
+<p>It might be necessary to rebuild ZFS module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for directory in /lib/modules/*; do
+  kernel_version=$(basename $directory)
+  dkms autoinstall -k $kernel_version
+done
+</pre></div>
+</div>
+<p>If for some reason, ZFS kernel module is not successfully built,
+you can also run the above command to debug the problem.</p>
+</li>
+<li><p>By default ZFS kernel modules are loaded upon detecting a pool.
+To always load the modules at boot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">zfs</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">modules</span><span class="o">-</span><span class="n">load</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">zfs</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="testing-repo">
+<h2>Testing Repo<a class="headerlink" href="#testing-repo" title="Permalink to this headline"></a></h2>
+<p>Testing repository, which is disabled by default, contains
+the latest version of OpenZFS which is under active development.
+These packages
+<strong>should not</strong> be used on production systems.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">config</span><span class="o">-</span><span class="n">manager</span> <span class="o">--</span><span class="n">enable</span> <span class="n">zfs</span><span class="o">-</span><span class="n">testing</span>
+<span class="n">dnf</span> <span class="n">install</span> <span class="n">zfs</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="root-on-zfs">
+<h2>Root on ZFS<a class="headerlink" href="#root-on-zfs" title="Permalink to this headline"></a></h2>
+<p>ZFS can be used as root file system for Fedora.
+An installation guide is available.</p>
+<p><a class="reference external" href="Root%20on%20ZFS/0-overview.html">Start here</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/0-overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/1-preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/2-system-installation.html">System Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/5-bootloader.html">Bootloader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/6-recovery.html">Recovery</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Debian/Debian GNU Linux initrd documentation.html" class="btn btn-neutral float-left" title="Debian GNU Linux initrd documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Fedora Root on ZFS.html" class="btn btn-neutral float-right" title="Fedora Root on ZFS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

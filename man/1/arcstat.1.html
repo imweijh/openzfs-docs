@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>arcstat.1 &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="cstyle.1" href="cstyle.1.html" />
+    <link rel="prev" title="User Commands (1)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../index.html"><img src="../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Getting Started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Man Pages</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">User Commands (1)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">arcstat.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cstyle.1.html">cstyle.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="raidz_test.1.html">raidz_test.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test-runner.1.html">test-runner.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zhack.1.html">zhack.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ztest.1.html">ztest.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zvol_wait.1.html">zvol_wait.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../4/index.html">Devices and Special Files (4)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5/index.html">File Formats and Conventions (5)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7/index.html">Miscellaneous (7)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../8/index.html">System Administration Commands (8)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Man Pages</a> &raquo;</li>
+          <li><a href="index.html">User Commands (1)</a> &raquo;</li>
+      <li>arcstat.1</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/openzfs/zfs/blob/master/man/man1/arcstat.1" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="arcstat-1">
+<h1>arcstat.1<a class="headerlink" href="#arcstat-1" title="Permalink to this headline"></a></h1>
+<div class="man_container"><table class="head">
+  <tr>
+    <td class="head-ltitle">ARCSTAT(1)</td>
+    <td class="head-vol">General Commands Manual</td>
+    <td class="head-rtitle">ARCSTAT(1)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<h1 class="Sh" title="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<code class="Nm" title="Nm">arcstat</code> &#x2014;
+<div class="Nd" title="Nd">report ZFS ARC and L2ARC statistics</div>
+<h1 class="Sh" title="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<table class="Nm">
+  <tr>
+    <td><code class="Nm" title="Nm">arcstat</code></td>
+    <td>[<div class="Op"><code class="Fl" title="Fl">-havxp</code></div>]
+      [<div class="Op"><code class="Fl" title="Fl">-f</code>
+      <var class="Ar" title="Ar">field</var>[<div class="Op">,<var class="Ar" title="Ar">field</var>&#x2026;</div>]</div>]
+      [<div class="Op"><code class="Fl" title="Fl">-o</code>
+      <var class="Ar" title="Ar">file</var></div>]
+      [<div class="Op"><code class="Fl" title="Fl">-s</code>
+      <var class="Ar" title="Ar">string</var></div>]
+      [<div class="Op"><var class="Ar" title="Ar">interval</var></div>]
+      [<div class="Op"><var class="Ar" title="Ar">count</var></div>]</td>
+  </tr>
+</table>
+<h1 class="Sh" title="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<code class="Nm" title="Nm">arcstat</code> prints various ZFS ARC and L2ARC
+  statistics in vmstat-like fashion:
+<div class="Bd-indent">
+<dl class="Bl-tag Bl-compact">
+  <dt><b class="Sy" title="Sy">c</b></dt>
+  <dd>ARC target size</dd>
+  <dt><b class="Sy" title="Sy">dh%</b></dt>
+  <dd>Demand data hit percentage</dd>
+  <dt><b class="Sy" title="Sy">dm%</b></dt>
+  <dd>Demand data miss percentage</dd>
+  <dt><b class="Sy" title="Sy">mfu</b></dt>
+  <dd>MFU list hits per second</dd>
+  <dt><b class="Sy" title="Sy">mh%</b></dt>
+  <dd>Metadata hit percentage</dd>
+  <dt><b class="Sy" title="Sy">mm%</b></dt>
+  <dd>Metadata miss percentage</dd>
+  <dt><b class="Sy" title="Sy">mru</b></dt>
+  <dd>MRU list hits per second</dd>
+  <dt><b class="Sy" title="Sy">ph%</b></dt>
+  <dd>Prefetch hits percentage</dd>
+  <dt><b class="Sy" title="Sy">pm%</b></dt>
+  <dd>Prefetch miss percentage</dd>
+  <dt><b class="Sy" title="Sy">dhit</b></dt>
+  <dd>Demand data hits per second</dd>
+  <dt><b class="Sy" title="Sy">dmis</b></dt>
+  <dd>Demand data misses per second</dd>
+  <dt><b class="Sy" title="Sy">hit%</b></dt>
+  <dd>ARC hit percentage</dd>
+  <dt><b class="Sy" title="Sy">hits</b></dt>
+  <dd>ARC reads per second</dd>
+  <dt><b class="Sy" title="Sy">mfug</b></dt>
+  <dd>MFU ghost list hits per second</dd>
+  <dt><b class="Sy" title="Sy">mhit</b></dt>
+  <dd>Metadata hits per second</dd>
+  <dt><b class="Sy" title="Sy">miss</b></dt>
+  <dd>ARC misses per second</dd>
+  <dt><b class="Sy" title="Sy">mmis</b></dt>
+  <dd>Metadata misses per second</dd>
+  <dt><b class="Sy" title="Sy">mrug</b></dt>
+  <dd>MRU ghost list hits per second</dd>
+  <dt><b class="Sy" title="Sy">phit</b></dt>
+  <dd>Prefetch hits per second</dd>
+  <dt><b class="Sy" title="Sy">pmis</b></dt>
+  <dd>Prefetch misses per second</dd>
+  <dt><b class="Sy" title="Sy">read</b></dt>
+  <dd>Total ARC accesses per second</dd>
+  <dt><b class="Sy" title="Sy">time</b></dt>
+  <dd>Current time</dd>
+  <dt><b class="Sy" title="Sy">size</b></dt>
+  <dd>ARC size</dd>
+  <dt><b class="Sy" title="Sy">arcsz</b></dt>
+  <dd>Alias for <b class="Sy" title="Sy">size</b></dd>
+  <dt><b class="Sy" title="Sy">dread</b></dt>
+  <dd>Demand data accesses per second</dd>
+  <dt><b class="Sy" title="Sy">eskip</b></dt>
+  <dd>evict_skip per second</dd>
+  <dt><b class="Sy" title="Sy">miss%</b></dt>
+  <dd>ARC miss percentage</dd>
+  <dt><b class="Sy" title="Sy">mread</b></dt>
+  <dd>Metadata accesses per second</dd>
+  <dt><b class="Sy" title="Sy">pread</b></dt>
+  <dd>Prefetch accesses per second</dd>
+  <dt><b class="Sy" title="Sy">l2hit%</b></dt>
+  <dd>L2ARC access hit percentage</dd>
+  <dt><b class="Sy" title="Sy">l2hits</b></dt>
+  <dd>L2ARC hits per second</dd>
+  <dt><b class="Sy" title="Sy">l2miss</b></dt>
+  <dd>L2ARC misses per second</dd>
+  <dt><b class="Sy" title="Sy">l2read</b></dt>
+  <dd>Total L2ARC accesses per second</dd>
+  <dt><b class="Sy" title="Sy">l2pref</b></dt>
+  <dd>L2ARC prefetch allocated size per second</dd>
+  <dt><b class="Sy" title="Sy">l2pref%</b></dt>
+  <dd>L2ARC prefetch allocated size percentage</dd>
+  <dt><b class="Sy" title="Sy">l2mfu</b></dt>
+  <dd>L2ARC MFU allocated size per second</dd>
+  <dt><b class="Sy" title="Sy">l2mfu%</b></dt>
+  <dd>L2ARC MFU allocated size percentage</dd>
+  <dt><b class="Sy" title="Sy">l2mru</b></dt>
+  <dd>L2ARC MRU allocated size per second</dd>
+  <dt><b class="Sy" title="Sy">l2mru%</b></dt>
+  <dd>L2ARC MRU allocated size percentage</dd>
+  <dt><b class="Sy" title="Sy">l2data</b></dt>
+  <dd>L2ARC data (buf content) allocated size per second</dd>
+  <dt><b class="Sy" title="Sy">l2data%</b></dt>
+  <dd>L2ARC data (buf content) allocated size percentage</dd>
+  <dt><b class="Sy" title="Sy">l2meta</b></dt>
+  <dd>L2ARC metadata (buf content) allocated size per second</dd>
+  <dt><b class="Sy" title="Sy">l2meta%</b></dt>
+  <dd>L2ARC metadata (buf content) allocated size percentage</dd>
+  <dt><b class="Sy" title="Sy">l2size</b></dt>
+  <dd>Size of the L2ARC</dd>
+  <dt><b class="Sy" title="Sy">mtxmis</b></dt>
+  <dd>mutex_miss per second</dd>
+  <dt><b class="Sy" title="Sy">l2bytes</b></dt>
+  <dd>Bytes read per second from the L2ARC</dd>
+  <dt><b class="Sy" title="Sy">l2miss%</b></dt>
+  <dd>L2ARC access miss percentage</dd>
+  <dt><b class="Sy" title="Sy">l2asize</b></dt>
+  <dd>Actual (compressed) size of the L2ARC</dd>
+  <dt><b class="Sy" title="Sy">grow</b></dt>
+  <dd>ARC grow disabled</dd>
+  <dt><b class="Sy" title="Sy">need</b></dt>
+  <dd>ARC reclaim needed</dd>
+  <dt><b class="Sy" title="Sy">free</b></dt>
+  <dd>The ARC's idea of how much free memory there is, which includes evictable
+      memory in the page cache. Since the ARC tries to keep
+      <b class="Sy" title="Sy">avail</b> above zero,
+      <b class="Sy" title="Sy">avail</b> is usually more instructive to observe
+      than <b class="Sy" title="Sy">free</b>.</dd>
+  <dt><b class="Sy" title="Sy">avail</b></dt>
+  <dd>The ARC's idea of how much free memory is available to it, which is a bit
+      less than <b class="Sy" title="Sy">free</b>. May temporarily be negative,
+      in which case the ARC will reduce the target size
+      <b class="Sy" title="Sy">c</b>.</dd>
+</dl>
+</div>
+<h1 class="Sh" title="Sh" id="OPTIONS"><a class="permalink" href="#OPTIONS">OPTIONS</a></h1>
+<dl class="Bl-tag">
+  <dt><a class="permalink" href="#a"><code class="Fl" title="Fl" id="a">-a</code></a></dt>
+  <dd>Print all possible stats.</dd>
+  <dt><a class="permalink" href="#f"><code class="Fl" title="Fl" id="f">-f</code></a></dt>
+  <dd>Display only specific fields. See
+      <a class="Sx" title="Sx" href="#DESCRIPTION">DESCRIPTION</a> for supported
+      statistics.</dd>
+  <dt><a class="permalink" href="#h"><code class="Fl" title="Fl" id="h">-h</code></a></dt>
+  <dd>Display help message.</dd>
+  <dt><a class="permalink" href="#o"><code class="Fl" title="Fl" id="o">-o</code></a></dt>
+  <dd>Report statistics to a file instead of the standard output.</dd>
+  <dt><a class="permalink" href="#p"><code class="Fl" title="Fl" id="p">-p</code></a></dt>
+  <dd>Disable auto-scaling of numerical fields (for raw, machine-parsable
+      values).</dd>
+  <dt><a class="permalink" href="#s"><code class="Fl" title="Fl" id="s">-s</code></a></dt>
+  <dd>Display data with a specified separator (default: 2 spaces).</dd>
+  <dt><a class="permalink" href="#x"><code class="Fl" title="Fl" id="x">-x</code></a></dt>
+  <dd>Print extended stats (same as <code class="Fl" title="Fl">-f</code>
+      <b class="Sy" title="Sy">time</b>,<b class="Sy" title="Sy">mfu</b>,<b class="Sy" title="Sy">mru</b>,<b class="Sy" title="Sy">mfug</b>,<b class="Sy" title="Sy">mrug</b>,<b class="Sy" title="Sy">eskip</b>,<b class="Sy" title="Sy">mtxmis</b>,<b class="Sy" title="Sy">dread</b>,<b class="Sy" title="Sy">pread</b>,<b class="Sy" title="Sy">read</b>).</dd>
+  <dt><a class="permalink" href="#v"><code class="Fl" title="Fl" id="v">-v</code></a></dt>
+  <dd>Show field headers and definitions</dd>
+</dl>
+<h1 class="Sh" title="Sh" id="OPERANDS"><a class="permalink" href="#OPERANDS">OPERANDS</a></h1>
+The following operands are supported:
+<div class="Bd-indent">
+<dl class="Bl-tag Bl-compact">
+  <dt><var class="Ar" title="Ar">interval</var></dt>
+  <dd>Specify the sampling interval in seconds.</dd>
+  <dt><var class="Ar" title="Ar">count</var></dt>
+  <dd>Display only <var class="Ar" title="Ar">count</var> reports.</dd>
+</dl>
+</div>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">May 26, 2021</td>
+    <td class="foot-os">Debian</td>
+  </tr>
+</table>
+</div></div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="User Commands (1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cstyle.1.html" class="btn btn-neutral float-right" title="cstyle.1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

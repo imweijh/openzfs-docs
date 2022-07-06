@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Installation &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="System Configuration" href="3-system-configuration.html" />
+    <link rel="prev" title="Preparation" href="1-preparation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../../index.html"><img src="../../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Arch Linux</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#support">Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#live-image">Live image</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#root-on-zfs">Root on ZFS</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="0-overview.html">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-preparation.html">Preparation</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">System Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-optional-configuration.html">Optional Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="5-bootloader.html">Bootloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="6-recovery.html">Recovery</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#contribute">Contribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../Debian/index.html">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Fedora/index.html">Fedora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../FreeBSD.html">FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS">Gentoo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../NixOS/index.html">NixOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openSUSE/index.html">openSUSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../RHEL-based distro/index.html">RHEL-based distro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Ubuntu/index.html">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../man/index.html">Man Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+          <li><a href="../index.html">Arch Linux</a> &raquo;</li>
+          <li><a href="../Arch Linux Root on ZFS.html">Arch Linux Root on ZFS</a> &raquo;</li>
+      <li>System Installation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/openzfs/openzfs-docs/blob/master/docs/Getting Started/Arch Linux/Root on ZFS/2-system-installation.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="system-installation">
+<h1>System Installation<a class="headerlink" href="#system-installation" title="Permalink to this headline"></a></h1>
+<ol class="arabic">
+<li><p>Optional: wipe solid-state drives with the generic tool
+<a class="reference external" href="https://utcc.utoronto.ca/~cks/space/blog/linux/ErasingSSDsWithBlkdiscard">blkdiscard</a>,
+to clean previous partition tables and improve performance.</p>
+<p>All content will be irrevocably destroyed:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+blkdiscard -f <span class="nv">$i</span> <span class="p">&amp;</span>
+<span class="k">done</span>
+<span class="nb">wait</span>
+</pre></div>
+</div>
+<p>This is a quick operation and should be completed under one
+minute.</p>
+<p>For other device specific methods, see
+<a class="reference external" href="https://wiki.archlinux.org/title/Solid_state_drive/Memory_cell_clearing">Memory cell clearing</a></p>
+</li>
+<li><p>Partition the disks.
+See <a class="reference external" href="0-overview.html">Overview</a> for details:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+sgdisk --zap-all <span class="nv">$i</span>
+sgdisk -n1:1M:+<span class="si">${</span><span class="nv">INST_PARTSIZE_ESP</span><span class="si">}</span>G -t1:EF00 <span class="nv">$i</span>
+sgdisk -n2:0:+<span class="si">${</span><span class="nv">INST_PARTSIZE_BPOOL</span><span class="si">}</span>G -t2:BE00 <span class="nv">$i</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">INST_PARTSIZE_SWAP</span><span class="si">}</span><span class="s2">&quot;</span> !<span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    sgdisk -n4:0:+<span class="si">${</span><span class="nv">INST_PARTSIZE_SWAP</span><span class="si">}</span>G -t4:8200 <span class="nv">$i</span>
+<span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">INST_PARTSIZE_RPOOL</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    sgdisk -n3:0:0   -t3:BF00 <span class="nv">$i</span>
+<span class="k">else</span>
+    sgdisk -n3:0:+<span class="si">${</span><span class="nv">INST_PARTSIZE_RPOOL</span><span class="si">}</span>G -t3:BF00 <span class="nv">$i</span>
+<span class="k">fi</span>
+sgdisk -a1 -n5:24K:+1000K -t5:EF02 <span class="nv">$i</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create boot pool:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">disk_num</span><span class="o">=</span><span class="m">0</span><span class="p">;</span> <span class="k">for</span> i in <span class="nv">$DISK</span><span class="p">;</span> <span class="k">do</span> <span class="nv">disk_num</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$disk_num</span> <span class="o">+</span> <span class="m">1</span> <span class="k">))</span><span class="p">;</span> <span class="k">done</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$disk_num</span> -gt <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nv">INST_VDEV_BPOOL</span><span class="o">=</span>mirror<span class="p">;</span> <span class="k">fi</span>
+
+zpool create <span class="se">\</span>
+    -o <span class="nv">compatibility</span><span class="o">=</span>grub2 <span class="se">\</span>
+    -o <span class="nv">ashift</span><span class="o">=</span><span class="m">12</span> <span class="se">\</span>
+    -o <span class="nv">autotrim</span><span class="o">=</span>on <span class="se">\</span>
+    -O <span class="nv">acltype</span><span class="o">=</span>posixacl <span class="se">\</span>
+    -O <span class="nv">canmount</span><span class="o">=</span>off <span class="se">\</span>
+    -O <span class="nv">compression</span><span class="o">=</span>lz4 <span class="se">\</span>
+    -O <span class="nv">devices</span><span class="o">=</span>off <span class="se">\</span>
+    -O <span class="nv">normalization</span><span class="o">=</span>formD <span class="se">\</span>
+    -O <span class="nv">relatime</span><span class="o">=</span>on <span class="se">\</span>
+    -O <span class="nv">xattr</span><span class="o">=</span>sa <span class="se">\</span>
+    -O <span class="nv">mountpoint</span><span class="o">=</span>/boot <span class="se">\</span>
+    -R /mnt <span class="se">\</span>
+    bpool_<span class="nv">$INST_UUID</span> <span class="se">\</span>
+     <span class="nv">$INST_VDEV_BPOOL</span> <span class="se">\</span>
+    <span class="k">$(for</span> i in <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+       <span class="nb">printf</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">-part2 &quot;</span><span class="p">;</span>
+      <span class="k">done)</span>
+</pre></div>
+</div>
+<p>You should not need to customize any of the options for the boot pool.</p>
+<p>GRUB does not support all of the zpool features. See <code class="docutils literal notranslate"><span class="pre">spa_feature_names</span></code>
+in <a class="reference external" href="http://git.savannah.gnu.org/cgit/grub.git/tree/grub-core/fs/zfs/zfs.c#n276">grub-core/fs/zfs/zfs.c</a>.
+This step creates a separate boot pool for <code class="docutils literal notranslate"><span class="pre">/boot</span></code> with the features
+limited to only those that GRUB supports, allowing the root pool to use
+any/all features.</p>
+<p>Features enabled with <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">compatibility=grub2</span></code> can be seen
+<a class="reference external" href="https://github.com/openzfs/zfs/blob/master/cmd/zpool/compatibility.d/grub2">here</a>.</p>
+</li>
+<li><p>Create root pool:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool create <span class="se">\</span>
+    -o <span class="nv">ashift</span><span class="o">=</span><span class="m">12</span> <span class="se">\</span>
+    -o <span class="nv">autotrim</span><span class="o">=</span>on <span class="se">\</span>
+    -R /mnt <span class="se">\</span>
+    -O <span class="nv">acltype</span><span class="o">=</span>posixacl <span class="se">\</span>
+    -O <span class="nv">canmount</span><span class="o">=</span>off <span class="se">\</span>
+    -O <span class="nv">compression</span><span class="o">=</span>zstd <span class="se">\</span>
+    -O <span class="nv">dnodesize</span><span class="o">=</span>auto <span class="se">\</span>
+    -O <span class="nv">normalization</span><span class="o">=</span>formD <span class="se">\</span>
+    -O <span class="nv">relatime</span><span class="o">=</span>on <span class="se">\</span>
+    -O <span class="nv">xattr</span><span class="o">=</span>sa <span class="se">\</span>
+    -O <span class="nv">mountpoint</span><span class="o">=</span>/ <span class="se">\</span>
+    rpool_<span class="nv">$INST_UUID</span> <span class="se">\</span>
+    <span class="nv">$INST_VDEV</span> <span class="se">\</span>
+   <span class="k">$(for</span> i in <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+      <span class="nb">printf</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">-part3 &quot;</span><span class="p">;</span>
+     <span class="k">done)</span>
+</pre></div>
+</div>
+<p><strong>Notes:</strong></p>
+<ul class="simple">
+<li><p>The use of <code class="docutils literal notranslate"><span class="pre">ashift=12</span></code> is recommended here because many drives
+today have 4 KiB (or larger) physical sectors, even though they
+present 512 B logical sectors. Also, a future replacement drive may
+have 4 KiB physical sectors (in which case <code class="docutils literal notranslate"><span class="pre">ashift=12</span></code> is desirable)
+or 4 KiB logical sectors (in which case <code class="docutils literal notranslate"><span class="pre">ashift=12</span></code> is required).</p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">acltype=posixacl</span></code> enables POSIX ACLs globally. If you
+do not want this, remove that option, but later add
+<code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">acltype=posixacl</span></code> (note: lowercase “o”) to the <code class="docutils literal notranslate"><span class="pre">zfs</span> <span class="pre">create</span></code>
+for <code class="docutils literal notranslate"><span class="pre">/var/log</span></code>, as <a class="reference external" href="https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported">journald requires ACLs</a></p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">normalization=formD</span></code> eliminates some corner cases relating
+to UTF-8 filename normalization. It also implies <code class="docutils literal notranslate"><span class="pre">utf8only=on</span></code>,
+which means that only UTF-8 filenames are allowed. If you care to
+support non-UTF-8 filenames, do not use this option. For a discussion
+of why requiring UTF-8 filenames may be a bad idea, see <a class="reference external" href="http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames">The problems
+with enforced UTF-8 only filenames</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recordsize</span></code> is unset (leaving it at the default of 128 KiB). If you
+want to tune it (e.g. <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">recordsize=1M</span></code>), see <a class="reference external" href="https://jrs-s.net/2019/04/03/on-zfs-recordsize/">these</a> <a class="reference external" href="http://blog.programster.org/zfs-record-size">various</a> <a class="reference external" href="https://utcc.utoronto.ca/~cks/space/blog/solaris/ZFSFileRecordsizeGrowth">blog</a>
+<a class="reference external" href="https://utcc.utoronto.ca/~cks/space/blog/solaris/ZFSRecordsizeAndCompression">posts</a>.</p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">relatime=on</span></code> is a middle ground between classic POSIX
+<code class="docutils literal notranslate"><span class="pre">atime</span></code> behavior (with its significant performance impact) and
+<code class="docutils literal notranslate"><span class="pre">atime=off</span></code> (which provides the best performance by completely
+disabling atime updates). Since Linux 2.6.30, <code class="docutils literal notranslate"><span class="pre">relatime</span></code> has been
+the default for other filesystems. See <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime">RedHat’s documentation</a>
+for further information.</p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">xattr=sa</span></code> <a class="reference external" href="https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355">vastly improves the performance of extended
+attributes</a>.
+Inside ZFS, extended attributes are used to implement POSIX ACLs.
+Extended attributes can also be used by user-space applications.
+<a class="reference external" href="https://en.wikipedia.org/wiki/Extended_file_attributes#Linux">They are used by some desktop GUI applications.</a>
+<a class="reference external" href="https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs">They can be used by Samba to store Windows ACLs and DOS attributes;
+they are required for a Samba Active Directory domain controller.</a>
+Note that <code class="docutils literal notranslate"><span class="pre">xattr=sa</span></code> is <a class="reference external" href="https://openzfs.org/wiki/Platform_code_differences">Linux-specific</a>. If you move your
+<code class="docutils literal notranslate"><span class="pre">xattr=sa</span></code> pool to another OpenZFS implementation besides ZFS-on-Linux,
+extended attributes will not be readable (though your data will be). If
+portability of extended attributes is important to you, omit the
+<code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">xattr=sa</span></code> above. Even if you do not want <code class="docutils literal notranslate"><span class="pre">xattr=sa</span></code> for the whole
+pool, it is probably fine to use it for <code class="docutils literal notranslate"><span class="pre">/var/log</span></code>.</p></li>
+<li><p>Make sure to include the <code class="docutils literal notranslate"><span class="pre">-part3</span></code> portion of the drive path. If you
+forget that, you are specifying the whole disk, which ZFS will then
+re-partition, and you will lose the bootloader partition(s).</p></li>
+</ul>
+</li>
+<li><p>This section implements dataset layout as described in <a class="reference external" href="0-overview.html">overview</a>.</p>
+<p>Create root system container:</p>
+<ul>
+<li><p>Unencrypted:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o <span class="nv">canmount</span><span class="o">=</span>off -o <span class="nv">mountpoint</span><span class="o">=</span>none rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>
+</pre></div>
+</div>
+</li>
+<li><p>Encrypted:</p>
+<p>Pick a strong password. Once compromised, changing password will not keep your
+data safe. See <code class="docutils literal notranslate"><span class="pre">zfs-change-key(8)</span></code> for more info:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o <span class="nv">canmount</span><span class="o">=</span>off -o <span class="nv">mountpoint</span><span class="o">=</span>none -o <span class="nv">encryption</span><span class="o">=</span>on -o <span class="nv">keylocation</span><span class="o">=</span>prompt -o <span class="nv">keyformat</span><span class="o">=</span>passphrase rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Create other system datasets:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o <span class="nv">canmount</span><span class="o">=</span>off -o <span class="nv">mountpoint</span><span class="o">=</span>none bpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>off -o <span class="nv">mountpoint</span><span class="o">=</span>none bpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/BOOT
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>off -o <span class="nv">mountpoint</span><span class="o">=</span>none rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/ROOT
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>off -o <span class="nv">mountpoint</span><span class="o">=</span>none rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA
+zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>/boot -o <span class="nv">canmount</span><span class="o">=</span>noauto bpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/BOOT/default
+zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>/ -o <span class="nv">canmount</span><span class="o">=</span>off    rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default
+zfs create -o <span class="nv">mountpoint</span><span class="o">=</span>/ -o <span class="nv">canmount</span><span class="o">=</span>noauto rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/ROOT/default
+zfs mount rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/ROOT/default
+zfs mount bpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/BOOT/default
+<span class="k">for</span> i in <span class="o">{</span>usr,var,var/lib<span class="o">}</span><span class="p">;</span>
+<span class="k">do</span>
+    zfs create -o <span class="nv">canmount</span><span class="o">=</span>off rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/<span class="nv">$i</span>
+<span class="k">done</span>
+<span class="k">for</span> i in <span class="o">{</span>home,root,srv,usr/local,var/log,var/spool<span class="o">}</span><span class="p">;</span>
+<span class="k">do</span>
+    zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/<span class="nv">$i</span>
+<span class="k">done</span>
+chmod <span class="m">750</span> /mnt/root
+</pre></div>
+</div>
+</li>
+<li><p>Format and mount ESP:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+ mkfs.vfat -n EFI <span class="si">${</span><span class="nv">i</span><span class="si">}</span>-part1
+ mkdir -p /mnt/boot/efis/<span class="si">${</span><span class="nv">i</span><span class="p">##*/</span><span class="si">}</span>-part1
+ mount -t vfat <span class="si">${</span><span class="nv">i</span><span class="si">}</span>-part1 /mnt/boot/efis/<span class="si">${</span><span class="nv">i</span><span class="p">##*/</span><span class="si">}</span>-part1
+<span class="k">done</span>
+
+mkdir -p /mnt/boot/efi
+mount -t vfat <span class="si">${</span><span class="nv">INST_PRIMARY_DISK</span><span class="si">}</span>-part1 /mnt/boot/efi
+</pre></div>
+</div>
+</li>
+<li><p>Create separate user dataset at <code class="docutils literal notranslate"><span class="pre">/home/User</span></code>, dateset name can be
+changed later:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/home/User
+</pre></div>
+</div>
+<p>If needed, snapshot, rollback and other related permissions can be
+delegated to the user later.</p>
+</li>
+<li><p>Create optional program data datasets to omit data from rollback:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/var/games
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/var/www
+<span class="c1"># for GNOME</span>
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/var/lib/AccountsService
+<span class="c1"># for Docker</span>
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/var/lib/docker
+<span class="c1"># for NFS</span>
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/var/lib/nfs
+<span class="c1"># for LXC</span>
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/var/lib/lxc
+<span class="c1"># for LibVirt</span>
+zfs create -o <span class="nv">canmount</span><span class="o">=</span>on rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>/DATA/default/var/lib/libvirt
+<span class="c1">##other application</span>
+<span class="c1"># zfs create -o canmount=on rpool_$INST_UUID/$INST_ID/DATA/default/var/lib/$name</span>
+</pre></div>
+</div>
+<p>Add other datasets when needed, such as PostgreSQL.</p>
+</li>
+<li><p>Install base packages:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pacstrap /mnt base vi mandoc grub efibootmgr mkinitcpio
+</pre></div>
+</div>
+</li>
+<li><p>Check compatible kernel version:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_LINVER</span><span class="o">=</span><span class="k">$(</span>pacman -Si zfs-<span class="si">${</span><span class="nv">INST_LINVAR</span><span class="si">}</span> <span class="se">\</span>
+<span class="p">|</span> grep <span class="s1">&#39;Depends On&#39;</span> <span class="se">\</span>
+<span class="p">|</span> sed <span class="s2">&quot;s|.*</span><span class="si">${</span><span class="nv">INST_LINVAR</span><span class="si">}</span><span class="s2">=||&quot;</span> <span class="se">\</span>
+<span class="p">|</span> awk <span class="s1">&#39;{ print $1 }&#39;</span><span class="k">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install kernel. Download from archive if kernel is not available:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> <span class="si">${</span><span class="nv">INST_LINVER</span><span class="si">}</span> <span class="o">=</span> <span class="se">\</span>
+<span class="k">$(</span>pacman -Si <span class="si">${</span><span class="nv">INST_LINVAR</span><span class="si">}</span> <span class="p">|</span> grep Version <span class="p">|</span> awk <span class="s1">&#39;{ print $3 }&#39;</span><span class="k">)</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+ pacstrap /mnt <span class="si">${</span><span class="nv">INST_LINVAR</span><span class="si">}</span>
+<span class="k">else</span>
+ pacstrap -U /mnt <span class="se">\</span>
+ https://archive.archlinux.org/packages/l/<span class="si">${</span><span class="nv">INST_LINVAR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">INST_LINVAR</span><span class="si">}</span>-<span class="si">${</span><span class="nv">INST_LINVER</span><span class="si">}</span>-x86_64.pkg.tar.zst
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p>Ignore <code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">command</span> <span class="pre">failed</span> <span class="pre">to</span> <span class="pre">execute</span> <span class="pre">correctly</span></code>.</p>
+</li>
+<li><p>Install archzfs package:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pacstrap /mnt zfs-<span class="nv">$INST_LINVAR</span> zfs-utils
+</pre></div>
+</div>
+</li>
+<li><p>Install firmware:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pacstrap /mnt linux-firmware intel-ucode amd-ucode
+</pre></div>
+</div>
+</li>
+<li><p>For other optional packages,
+see <a class="reference external" href="https://wiki.archlinux.org/index.php/Installation_guide#Installation">ArchWiki</a>.</p></li>
+</ol>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1-preparation.html" class="btn btn-neutral float-left" title="Preparation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3-system-configuration.html" class="btn btn-neutral float-right" title="System Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

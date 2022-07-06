@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preparation &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="System Installation" href="2-system-installation.html" />
+    <link rel="prev" title="Overview" href="0-overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../../index.html"><img src="../../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Arch Linux</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#support">Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#live-image">Live image</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#root-on-zfs">Root on ZFS</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="0-overview.html">Overview</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2-system-installation.html">System Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-optional-configuration.html">Optional Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="5-bootloader.html">Bootloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="6-recovery.html">Recovery</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#contribute">Contribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../Debian/index.html">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Fedora/index.html">Fedora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../FreeBSD.html">FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS">Gentoo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../NixOS/index.html">NixOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openSUSE/index.html">openSUSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../RHEL-based distro/index.html">RHEL-based distro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Ubuntu/index.html">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../man/index.html">Man Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+          <li><a href="../index.html">Arch Linux</a> &raquo;</li>
+          <li><a href="../Arch Linux Root on ZFS.html">Arch Linux Root on ZFS</a> &raquo;</li>
+      <li>Preparation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/openzfs/openzfs-docs/blob/master/docs/Getting Started/Arch Linux/Root on ZFS/1-preparation.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="preparation">
+<h1>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline"></a></h1>
+<ol class="arabic">
+<li><p>Download live ISO compatible with ZFS:</p>
+<ol class="arabic">
+<li><p>Check zfs-dkms version</p>
+<p>Visit <a class="reference external" href="https://archzfs.com/archzfs/x86_64/">archzfs repo</a>,
+search for <code class="docutils literal notranslate"><span class="pre">zfs-dkms</span></code> in page:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs-dkms-2.1.2-1-x86_64.pkg.tar.zst
+</pre></div>
+</div>
+<p>Ignore unstable variants such as zfs-dkms-git or zfs-dkms-rc.
+In this case, version number is 2.1.2, between two <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
+</li>
+<li><p>Check supported kernel version. Plug the version number into the
+following link:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>https://github.com/openzfs/zfs/blob/zfs-2.1.2/META
+</pre></div>
+</div>
+<p>Visit the page, the supported max kernel version is:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Linux-Maximum: <span class="m">5</span>.15
+</pre></div>
+</div>
+</li>
+<li><p>Visit <a class="reference external" href="https://archlinux.org/releng/releases/">Arch Linux releases page</a> and download a
+supported version.  Note that minor kernel releases does not
+affect ZFS compatibility, i. e., both <code class="docutils literal notranslate"><span class="pre">5.15.5</span></code> and <code class="docutils literal notranslate"><span class="pre">5.15.15</span></code>
+are supported by ZFS with <code class="docutils literal notranslate"><span class="pre">Linux-Maximum:</span> <span class="pre">5.15</span></code>.</p></li>
+</ol>
+</li>
+<li><p>Follow <a class="reference external" href="https://wiki.archlinux.org/title/Installation_guide">installation guide on Arch wiki</a>
+up to <strong>Update the system clock</strong>.</p></li>
+<li><p>Set root password or <code class="docutils literal notranslate"><span class="pre">/root/.ssh/authorized_keys</span></code>.</p></li>
+<li><p>Start SSH server:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>systemctl start sshd
+</pre></div>
+</div>
+</li>
+<li><p>Connect from another computer:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ssh root@192.168.1.19
+</pre></div>
+</div>
+<p>and, most important, enter a bash shell:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>bash
+</pre></div>
+</div>
+<p>This guide is untested with the default shell <code class="docutils literal notranslate"><span class="pre">zsh</span></code> in live environment.</p>
+</li>
+<li><p>Expand live root filesystem:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mount -o remount,size<span class="o">=</span>2G /run/archiso/cowspace/
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference external" href="../0-archzfs-repo.html">Add archzfs repo</a>.</p></li>
+<li><p><a class="reference external" href="../2-zfs-dkms.html#installation">Install zfs-dkms in live environment</a>.</p></li>
+<li><p>Load zfs kernel module:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>modprobe zfs
+</pre></div>
+</div>
+</li>
+<li><p>Kernel variant</p>
+<p>Store the kernel variant in a variable.
+Available variants in official repo are:</p>
+<ul class="simple">
+<li><p>linux</p></li>
+<li><p>linux-lts</p></li>
+<li><p>linux-zen</p></li>
+<li><p>linux-hardened</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_LINVAR</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">linux-hardened</span></code> does not support hibernation.</p>
+</li>
+<li><p>Unique pool suffix. ZFS expects pool names to be
+unique, therefore it’s recommended to create
+pools with a unique suffix:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_UUID</span><span class="o">=</span><span class="k">$(</span>dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span><span class="m">1</span> <span class="nv">count</span><span class="o">=</span><span class="m">100</span> <span class="m">2</span>&gt;/dev/null <span class="p">|</span> tr -dc <span class="s1">&#39;a-z0-9&#39;</span> <span class="p">|</span> cut -c-6<span class="k">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Identify this installation in ZFS filesystem path:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_ID</span><span class="o">=</span>arch
+</pre></div>
+</div>
+</li>
+<li><p>Target disk</p>
+<p>List available disks with:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ls /dev/disk/by-id/*
+</pre></div>
+</div>
+<p>If using virtio as disk bus, use
+<code class="docutils literal notranslate"><span class="pre">/dev/disk/by-path/*</span></code>.</p>
+<p>Declare disk array:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">DISK</span><span class="o">=</span><span class="s1">&#39;/dev/disk/by-id/ata-FOO /dev/disk/by-id/nvme-BAR&#39;</span>
+</pre></div>
+</div>
+<p>For single disk installation, use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">DISK</span><span class="o">=</span><span class="s1">&#39;/dev/disk/by-id/disk1&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Choose a primary disk. This disk will be used
+for primary EFI partition and hibernation, default to
+first disk in the array:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_PRIMARY_DISK</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$DISK</span> <span class="p">|</span> cut -f1 -d<span class="se">\ </span><span class="k">)</span>
+</pre></div>
+</div>
+<p>If disk path contains colon <code class="docutils literal notranslate"><span class="pre">:</span></code>, this disk
+can not be used for hibernation. <code class="docutils literal notranslate"><span class="pre">encrypt</span></code> mkinitcpio
+hook treats <code class="docutils literal notranslate"><span class="pre">:</span></code> as argument separator without a means to
+escape this character.</p>
+</li>
+<li><p>Set vdev topology, possible values are:</p>
+<ul class="simple">
+<li><p>(not set, single disk or striped; no redundancy)</p></li>
+<li><p>mirror</p></li>
+<li><p>raidz1</p></li>
+<li><p>raidz2</p></li>
+<li><p>raidz3</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_VDEV</span><span class="o">=</span>
+</pre></div>
+</div>
+<p>This will create a single vdev with the topology of your choice.
+It is also possible to manually create a pool with multiple vdevs, such as:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool create --options <span class="se">\</span>
+      poolName <span class="se">\</span>
+      mirror sda sdb <span class="se">\</span>
+      raidz2 sdc ... <span class="se">\</span>
+      raidz3 sde ... <span class="se">\</span>
+      spare  sdf ...
+</pre></div>
+</div>
+<p>Notice the cost of parity when using RAID-Z. See
+<a class="reference external" href="https://www.delphix.com/blog/delphix-engineering/zfs-raidz-stripe-width-or-how-i-learned-stop-worrying-and-love-raidz">here</a>
+and <a class="reference external" href="https://docs.google.com/spreadsheets/d/1tf4qx1aMJp8Lo_R6gpT689wTjHv6CGVElrPqTA0w_ZY/">here</a>.</p>
+<p>For boot pool, which must be readable by GRUB, mirrored vdev should always be used for maximum redundancy.
+This guide will use mirrored bpool for multi-disk setup.</p>
+<p>Refer to <a class="reference external" href="https://openzfs.github.io/openzfs-docs/man/7/zpoolconcepts.7.html">zpoolconcepts</a>
+and <a class="reference external" href="https://openzfs.github.io/openzfs-docs/man/8/zpool-create.8.html">zpool-create</a>
+man pages for details.</p>
+</li>
+<li><p>Set partition size:</p>
+<p>Set ESP size. ESP contains Live ISO for recovery,
+as described in <a class="reference external" href="4-optional-configuration.html">optional configurations</a>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_PARTSIZE_ESP</span><span class="o">=</span><span class="m">4</span> <span class="c1"># in GB</span>
+<span class="c1">#INST_PARTSIZE_ESP=1 # if local recovery is not needed</span>
+</pre></div>
+</div>
+<p>Set boot pool size. To avoid running out of space while using
+boot environments, the minimum is 4GB. Adjust the size if you
+intend to use multiple kernel/distros:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_PARTSIZE_BPOOL</span><span class="o">=</span><span class="m">4</span>
+</pre></div>
+</div>
+<p>Set swap size. It’s <a class="reference external" href="https://chrisdown.name/2018/01/02/in-defence-of-swap.html">recommended</a>
+to setup a swap partition. If you intend to use hibernation,
+the minimum should be no less than RAM size. Skip if swap is not needed:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_PARTSIZE_SWAP</span><span class="o">=</span><span class="m">8</span>
+</pre></div>
+</div>
+<p>Root pool size, use all remaining disk space if not set:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">INST_PARTSIZE_RPOOL</span><span class="o">=</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="0-overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2-system-installation.html" class="btn btn-neutral float-right" title="System Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zpool-events.8 &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="zpool-export.8" href="zpool-export.8.html" />
+    <link rel="prev" title="zpool-detach.8" href="zpool-detach.8.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../index.html"><img src="../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Getting Started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Man Pages</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1/index.html">User Commands (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4/index.html">Devices and Special Files (4)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5/index.html">File Formats and Conventions (5)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7/index.html">Miscellaneous (7)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">System Administration Commands (8)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fsck.zfs.8.html">fsck.zfs.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mount.zfs.8.html">mount.zfs.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vdev_id.8.html">vdev_id.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zdb.8.html">zdb.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-allow.8.html">zfs-allow.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-bookmark.8.html">zfs-bookmark.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-change-key.8.html">zfs-change-key.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-clone.8.html">zfs-clone.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-create.8.html">zfs-create.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-destroy.8.html">zfs-destroy.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-diff.8.html">zfs-diff.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-get.8.html">zfs-get.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-groupspace.8.html">zfs-groupspace.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-hold.8.html">zfs-hold.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-inherit.8.html">zfs-inherit.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-jail.8.html">zfs-jail.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-list.8.html">zfs-list.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-load-key.8.html">zfs-load-key.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-mount.8.html">zfs-mount.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-program.8.html">zfs-program.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-project.8.html">zfs-project.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-projectspace.8.html">zfs-projectspace.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-promote.8.html">zfs-promote.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-receive.8.html">zfs-receive.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-recv.8.html">zfs-recv.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-redact.8.html">zfs-redact.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-release.8.html">zfs-release.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-rename.8.html">zfs-rename.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-rollback.8.html">zfs-rollback.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-send.8.html">zfs-send.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-set.8.html">zfs-set.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-share.8.html">zfs-share.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-snapshot.8.html">zfs-snapshot.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unallow.8.html">zfs-unallow.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unjail.8.html">zfs-unjail.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unload-key.8.html">zfs-unload-key.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unmount.8.html">zfs-unmount.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unzone.8.html">zfs-unzone.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-upgrade.8.html">zfs-upgrade.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-userspace.8.html">zfs-userspace.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-wait.8.html">zfs-wait.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-zone.8.html">zfs-zone.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs.8.html">zfs.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs_ids_to_path.8.html">zfs_ids_to_path.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zgenhostid.8.html">zgenhostid.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zinject.8.html">zinject.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-add.8.html">zpool-add.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-attach.8.html">zpool-attach.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-checkpoint.8.html">zpool-checkpoint.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-clear.8.html">zpool-clear.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-create.8.html">zpool-create.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-destroy.8.html">zpool-destroy.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-detach.8.html">zpool-detach.8</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">zpool-events.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-export.8.html">zpool-export.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-get.8.html">zpool-get.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-history.8.html">zpool-history.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-import.8.html">zpool-import.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-initialize.8.html">zpool-initialize.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-iostat.8.html">zpool-iostat.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-labelclear.8.html">zpool-labelclear.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-list.8.html">zpool-list.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-offline.8.html">zpool-offline.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-online.8.html">zpool-online.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-reguid.8.html">zpool-reguid.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-remove.8.html">zpool-remove.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-reopen.8.html">zpool-reopen.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-replace.8.html">zpool-replace.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-resilver.8.html">zpool-resilver.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-scrub.8.html">zpool-scrub.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-set.8.html">zpool-set.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-split.8.html">zpool-split.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-status.8.html">zpool-status.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-sync.8.html">zpool-sync.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-trim.8.html">zpool-trim.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-upgrade.8.html">zpool-upgrade.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-wait.8.html">zpool-wait.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool.8.html">zpool.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool_influxdb.8.html">zpool_influxdb.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zstream.8.html">zstream.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zstreamdump.8.html">zstreamdump.8</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Man Pages</a> &raquo;</li>
+          <li><a href="index.html">System Administration Commands (8)</a> &raquo;</li>
+      <li>zpool-events.8</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/openzfs/zfs/blob/master/man/man8/zpool-events.8" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="zpool-events-8">
+<h1>zpool-events.8<a class="headerlink" href="#zpool-events-8" title="Permalink to this headline"></a></h1>
+<div class="man_container"><table class="head">
+  <tr>
+    <td class="head-ltitle">ZPOOL-EVENTS(8)</td>
+    <td class="head-vol">System Manager's Manual</td>
+    <td class="head-rtitle">ZPOOL-EVENTS(8)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<h1 class="Sh" title="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<code class="Nm" title="Nm">zpool-events</code> &#x2014;
+<div class="Nd" title="Nd">list recent events generated by kernel</div>
+<h1 class="Sh" title="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<table class="Nm">
+  <tr>
+    <td><code class="Nm" title="Nm">zpool</code></td>
+    <td><code class="Cm" title="Cm">events</code>
+      [<div class="Op"><code class="Fl" title="Fl">-vHf</code></div>]
+      [<div class="Op"><var class="Ar" title="Ar">pool</var></div>]</td>
+  </tr>
+</table>
+<br/>
+<table class="Nm">
+  <tr>
+    <td><code class="Nm" title="Nm">zpool</code></td>
+    <td><code class="Cm" title="Cm">events</code>
+      <code class="Fl" title="Fl">-c</code></td>
+  </tr>
+</table>
+<h1 class="Sh" title="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+Lists all recent events generated by the ZFS kernel modules. These events are
+  consumed by the <a class="Xr" title="Xr">zed(8)</a> and used to automate
+  administrative tasks such as replacing a failed device with a hot spare. For
+  more information about the subclasses and event payloads that can be generated
+  see <a class="Sx" title="Sx" href="#EVENTS">EVENTS</a> and the following
+  sections.
+<h1 class="Sh" title="Sh" id="OPTIONS"><a class="permalink" href="#OPTIONS">OPTIONS</a></h1>
+<dl class="Bl-tag Bl-compact">
+  <dt><a class="permalink" href="#c"><code class="Fl" title="Fl" id="c">-c</code></a></dt>
+  <dd>Clear all previous events.</dd>
+  <dt><a class="permalink" href="#f"><code class="Fl" title="Fl" id="f">-f</code></a></dt>
+  <dd>Follow mode.</dd>
+  <dt><a class="permalink" href="#H"><code class="Fl" title="Fl" id="H">-H</code></a></dt>
+  <dd>Scripted mode. Do not display headers, and separate fields by a single tab
+      instead of arbitrary space.</dd>
+  <dt><a class="permalink" href="#v"><code class="Fl" title="Fl" id="v">-v</code></a></dt>
+  <dd>Print the entire payload for each event.</dd>
+</dl>
+<h1 class="Sh" title="Sh" id="EVENTS"><a class="permalink" href="#EVENTS">EVENTS</a></h1>
+These are the different event subclasses. The full event name would be
+  <b class="Sy" title="Sy">ereport.fs.zfs.</b><i class="Em" title="Em">SUBCLASS</i>,
+  but only the last part is listed here.
+<div class="Pp"></div>
+<dl class="Bl-tag Bl-compact">
+  <dt><b class="Sy" title="Sy">checksum</b></dt>
+  <dd>Issued when a checksum error has been detected.</dd>
+  <dt><b class="Sy" title="Sy">io</b></dt>
+  <dd>Issued when there is an I/O error in a vdev in the pool.</dd>
+  <dt><b class="Sy" title="Sy">data</b></dt>
+  <dd>Issued when there have been data errors in the pool.</dd>
+  <dt><b class="Sy" title="Sy">deadman</b></dt>
+  <dd>Issued when an I/O request is determined to be &quot;hung&quot;, this can
+      be caused by lost completion events due to flaky hardware or drivers. See
+      <b class="Sy" title="Sy">zfs_deadman_failmode</b> in
+      <a href="../4/zfs.4.html" class="Xr">zfs(4)</a> for additional information regarding
+      &quot;hung&quot; I/O detection and configuration.</dd>
+  <dt><b class="Sy" title="Sy">delay</b></dt>
+  <dd>Issued when a completed I/O request exceeds the maximum allowed time
+      specified by the <b class="Sy" title="Sy">zio_slow_io_ms</b> module
+      parameter. This can be an indicator of problems with the underlying
+      storage device. The number of delay events is ratelimited by the
+      <b class="Sy" title="Sy">zfs_slow_io_events_per_second</b> module
+      parameter.</dd>
+  <dt><b class="Sy" title="Sy">config</b></dt>
+  <dd>Issued every time a vdev change have been done to the pool.</dd>
+  <dt><b class="Sy" title="Sy">zpool</b></dt>
+  <dd>Issued when a pool cannot be imported.</dd>
+  <dt><b class="Sy" title="Sy">zpool.destroy</b></dt>
+  <dd>Issued when a pool is destroyed.</dd>
+  <dt><b class="Sy" title="Sy">zpool.export</b></dt>
+  <dd>Issued when a pool is exported.</dd>
+  <dt><b class="Sy" title="Sy">zpool.import</b></dt>
+  <dd>Issued when a pool is imported.</dd>
+  <dt><b class="Sy" title="Sy">zpool.reguid</b></dt>
+  <dd>Issued when a REGUID (new unique identifier for the pool have been
+      regenerated) have been detected.</dd>
+  <dt><b class="Sy" title="Sy">vdev.unknown</b></dt>
+  <dd>Issued when the vdev is unknown. Such as trying to clear device errors on
+      a vdev that have failed/been kicked from the system/pool and is no longer
+      available.</dd>
+  <dt><b class="Sy" title="Sy">vdev.open_failed</b></dt>
+  <dd>Issued when a vdev could not be opened (because it didn't exist for
+      example).</dd>
+  <dt><b class="Sy" title="Sy">vdev.corrupt_data</b></dt>
+  <dd>Issued when corrupt data have been detected on a vdev.</dd>
+  <dt><b class="Sy" title="Sy">vdev.no_replicas</b></dt>
+  <dd>Issued when there are no more replicas to sustain the pool. This would
+      lead to the pool being <i class="Em" title="Em">DEGRADED</i>.</dd>
+  <dt><b class="Sy" title="Sy">vdev.bad_guid_sum</b></dt>
+  <dd>Issued when a missing device in the pool have been detected.</dd>
+  <dt><b class="Sy" title="Sy">vdev.too_small</b></dt>
+  <dd>Issued when the system (kernel) have removed a device, and ZFS notices
+      that the device isn't there any more. This is usually followed by a
+      <b class="Sy" title="Sy">probe_failure</b> event.</dd>
+  <dt><b class="Sy" title="Sy">vdev.bad_label</b></dt>
+  <dd>Issued when the label is OK but invalid.</dd>
+  <dt><b class="Sy" title="Sy">vdev.bad_ashift</b></dt>
+  <dd>Issued when the ashift alignment requirement has increased.</dd>
+  <dt><b class="Sy" title="Sy">vdev.remove</b></dt>
+  <dd>Issued when a vdev is detached from a mirror (or a spare detached from a
+      vdev where it have been used to replace a failed drive - only works if the
+      original drive have been re-added).</dd>
+  <dt><b class="Sy" title="Sy">vdev.clear</b></dt>
+  <dd>Issued when clearing device errors in a pool. Such as running
+      <code class="Nm" title="Nm">zpool</code>
+      <code class="Cm" title="Cm">clear</code> on a device in the pool.</dd>
+  <dt><b class="Sy" title="Sy">vdev.check</b></dt>
+  <dd>Issued when a check to see if a given vdev could be opened is
+    started.</dd>
+  <dt><b class="Sy" title="Sy">vdev.spare</b></dt>
+  <dd>Issued when a spare have kicked in to replace a failed device.</dd>
+  <dt><b class="Sy" title="Sy">vdev.autoexpand</b></dt>
+  <dd>Issued when a vdev can be automatically expanded.</dd>
+  <dt><b class="Sy" title="Sy">io_failure</b></dt>
+  <dd>Issued when there is an I/O failure in a vdev in the pool.</dd>
+  <dt><b class="Sy" title="Sy">probe_failure</b></dt>
+  <dd>Issued when a probe fails on a vdev. This would occur if a vdev have been
+      kicked from the system outside of ZFS (such as the kernel have removed the
+      device).</dd>
+  <dt><b class="Sy" title="Sy">log_replay</b></dt>
+  <dd>Issued when the intent log cannot be replayed. The can occur in the case
+      of a missing or damaged log device.</dd>
+  <dt><b class="Sy" title="Sy">resilver.start</b></dt>
+  <dd>Issued when a resilver is started.</dd>
+  <dt><b class="Sy" title="Sy">resilver.finish</b></dt>
+  <dd>Issued when the running resilver have finished.</dd>
+  <dt><b class="Sy" title="Sy">scrub.start</b></dt>
+  <dd>Issued when a scrub is started on a pool.</dd>
+  <dt><b class="Sy" title="Sy">scrub.finish</b></dt>
+  <dd>Issued when a pool has finished scrubbing.</dd>
+  <dt><b class="Sy" title="Sy">scrub.abort</b></dt>
+  <dd>Issued when a scrub is aborted on a pool.</dd>
+  <dt><b class="Sy" title="Sy">scrub.resume</b></dt>
+  <dd>Issued when a scrub is resumed on a pool.</dd>
+  <dt><b class="Sy" title="Sy">scrub.paused</b></dt>
+  <dd>Issued when a scrub is paused on a pool.</dd>
+  <dt><b class="Sy" title="Sy">bootfs.vdev.attach</b></dt>
+  <dd style="width: auto;">&#x00A0;</dd>
+</dl>
+<h1 class="Sh" title="Sh" id="PAYLOADS"><a class="permalink" href="#PAYLOADS">PAYLOADS</a></h1>
+This is the payload (data, information) that accompanies an event.
+<div class="Pp"></div>
+For <a class="Xr" title="Xr">zed(8)</a>, these are set to uppercase and prefixed
+  with <b class="Sy" title="Sy">ZEVENT_</b>.
+<div class="Pp"></div>
+<dl class="Bl-tag Bl-compact">
+  <dt><b class="Sy" title="Sy">pool</b></dt>
+  <dd>Pool name.</dd>
+  <dt><b class="Sy" title="Sy">pool_failmode</b></dt>
+  <dd>Failmode - <b class="Sy" title="Sy">wait</b>,
+      <b class="Sy" title="Sy">continue</b>, or
+      <b class="Sy" title="Sy">panic</b>. See the
+      <b class="Sy" title="Sy">failmode</b> property in
+      <a href="../7/zpoolprops.7.html" class="Xr">zpoolprops(7)</a> for more information.</dd>
+  <dt><b class="Sy" title="Sy">pool_guid</b></dt>
+  <dd>The GUID of the pool.</dd>
+  <dt><b class="Sy" title="Sy">pool_context</b></dt>
+  <dd>The load state for the pool (0=none, 1=open, 2=import, 3=tryimport,
+      4=recover 5=error).</dd>
+  <dt><b class="Sy" title="Sy">vdev_guid</b></dt>
+  <dd>The GUID of the vdev in question (the vdev failing or operated upon with
+      <code class="Nm" title="Nm">zpool</code>
+      <code class="Cm" title="Cm">clear</code>, etc.).</dd>
+  <dt><b class="Sy" title="Sy">vdev_type</b></dt>
+  <dd>Type of vdev - <b class="Sy" title="Sy">disk</b>,
+      <b class="Sy" title="Sy">file</b>, <b class="Sy" title="Sy">mirror</b>,
+      etc. See the <b class="Sy" title="Sy">Virtual Devices</b> section of
+      <a href="../7/zpoolconcepts.7.html" class="Xr">zpoolconcepts(7)</a> for more information on
+      possible values.</dd>
+  <dt><b class="Sy" title="Sy">vdev_path</b></dt>
+  <dd>Full path of the vdev, including any
+    <i class="Em" title="Em">-partX</i>.</dd>
+  <dt><b class="Sy" title="Sy">vdev_devid</b></dt>
+  <dd>ID of vdev (if any).</dd>
+  <dt><b class="Sy" title="Sy">vdev_fru</b></dt>
+  <dd>Physical FRU location.</dd>
+  <dt><b class="Sy" title="Sy">vdev_state</b></dt>
+  <dd>State of vdev (0=uninitialized, 1=closed, 2=offline, 3=removed, 4=failed
+      to open, 5=faulted, 6=degraded, 7=healthy).</dd>
+  <dt><b class="Sy" title="Sy">vdev_ashift</b></dt>
+  <dd>The ashift value of the vdev.</dd>
+  <dt><b class="Sy" title="Sy">vdev_complete_ts</b></dt>
+  <dd>The time the last I/O request completed for the specified vdev.</dd>
+  <dt><b class="Sy" title="Sy">vdev_delta_ts</b></dt>
+  <dd>The time since the last I/O request completed for the specified vdev.</dd>
+  <dt><b class="Sy" title="Sy">vdev_spare_paths</b></dt>
+  <dd>List of spares, including full path and any
+      <i class="Em" title="Em">-partX</i>.</dd>
+  <dt><b class="Sy" title="Sy">vdev_spare_guids</b></dt>
+  <dd>GUID(s) of spares.</dd>
+  <dt><b class="Sy" title="Sy">vdev_read_errors</b></dt>
+  <dd>How many read errors that have been detected on the vdev.</dd>
+  <dt><b class="Sy" title="Sy">vdev_write_errors</b></dt>
+  <dd>How many write errors that have been detected on the vdev.</dd>
+  <dt><b class="Sy" title="Sy">vdev_cksum_errors</b></dt>
+  <dd>How many checksum errors that have been detected on the vdev.</dd>
+  <dt><b class="Sy" title="Sy">parent_guid</b></dt>
+  <dd>GUID of the vdev parent.</dd>
+  <dt><b class="Sy" title="Sy">parent_type</b></dt>
+  <dd>Type of parent. See <b class="Sy" title="Sy">vdev_type</b>.</dd>
+  <dt><b class="Sy" title="Sy">parent_path</b></dt>
+  <dd>Path of the vdev parent (if any).</dd>
+  <dt><b class="Sy" title="Sy">parent_devid</b></dt>
+  <dd>ID of the vdev parent (if any).</dd>
+  <dt><b class="Sy" title="Sy">zio_objset</b></dt>
+  <dd>The object set number for a given I/O request.</dd>
+  <dt><b class="Sy" title="Sy">zio_object</b></dt>
+  <dd>The object number for a given I/O request.</dd>
+  <dt><b class="Sy" title="Sy">zio_level</b></dt>
+  <dd>The indirect level for the block. Level 0 is the lowest level and includes
+      data blocks. Values &gt; 0 indicate metadata blocks at the appropriate
+      level.</dd>
+  <dt><b class="Sy" title="Sy">zio_blkid</b></dt>
+  <dd>The block ID for a given I/O request.</dd>
+  <dt><b class="Sy" title="Sy">zio_err</b></dt>
+  <dd>The error number for a failure when handling a given I/O request,
+      compatible with <a class="Xr" title="Xr">errno(3)</a> with the value of
+      <b class="Sy" title="Sy">EBADE</b> used to indicate a ZFS checksum
+    error.</dd>
+  <dt><b class="Sy" title="Sy">zio_offset</b></dt>
+  <dd>The offset in bytes of where to write the I/O request for the specified
+      vdev.</dd>
+  <dt><b class="Sy" title="Sy">zio_size</b></dt>
+  <dd>The size in bytes of the I/O request.</dd>
+  <dt><b class="Sy" title="Sy">zio_flags</b></dt>
+  <dd>The current flags describing how the I/O request should be handled. See
+      the <b class="Sy" title="Sy">I/O FLAGS</b> section for the full list of
+      I/O flags.</dd>
+  <dt><b class="Sy" title="Sy">zio_stage</b></dt>
+  <dd>The current stage of the I/O in the pipeline. See the
+      <b class="Sy" title="Sy">I/O STAGES</b> section for a full list of all the
+      I/O stages.</dd>
+  <dt><b class="Sy" title="Sy">zio_pipeline</b></dt>
+  <dd>The valid pipeline stages for the I/O. See the
+      <b class="Sy" title="Sy">I/O STAGES</b> section for a full list of all the
+      I/O stages.</dd>
+  <dt><b class="Sy" title="Sy">zio_delay</b></dt>
+  <dd>The time elapsed (in nanoseconds) waiting for the block layer to complete
+      the I/O request. Unlike <b class="Sy" title="Sy">zio_delta</b>, this does
+      not include any vdev queuing time and is therefore solely a measure of the
+      block layer performance.</dd>
+  <dt><b class="Sy" title="Sy">zio_timestamp</b></dt>
+  <dd>The time when a given I/O request was submitted.</dd>
+  <dt><b class="Sy" title="Sy">zio_delta</b></dt>
+  <dd>The time required to service a given I/O request.</dd>
+  <dt><b class="Sy" title="Sy">prev_state</b></dt>
+  <dd>The previous state of the vdev.</dd>
+  <dt><b class="Sy" title="Sy">cksum_expected</b></dt>
+  <dd>The expected checksum value for the block.</dd>
+  <dt><b class="Sy" title="Sy">cksum_actual</b></dt>
+  <dd>The actual checksum value for an errant block.</dd>
+  <dt><b class="Sy" title="Sy">cksum_algorithm</b></dt>
+  <dd>Checksum algorithm used. See <a href="../7/zfsprops.7.html" class="Xr">zfsprops(7)</a> for
+      more information on the available checksum algorithms.</dd>
+  <dt><b class="Sy" title="Sy">cksum_byteswap</b></dt>
+  <dd>Whether or not the data is byteswapped.</dd>
+  <dt><b class="Sy" title="Sy">bad_ranges</b></dt>
+  <dd><a class="permalink" href="#__&amp;"><span class="No" id="__&amp;">[</span></a><var class="Ar" title="Ar">start</var>,
+      <var class="Ar" title="Ar">end</var>) pairs of corruption offsets. Offsets
+      are always aligned on a 64-bit boundary, and can include some gaps of
+      non-corruption. (See <b class="Sy" title="Sy">bad_ranges_min_gap</b>)</dd>
+  <dt><b class="Sy" title="Sy">bad_ranges_min_gap</b></dt>
+  <dd>In order to bound the size of the <b class="Sy" title="Sy">bad_ranges</b>
+      array, gaps of non-corruption less than or equal to
+      <b class="Sy" title="Sy">bad_ranges_min_gap</b> bytes have been merged
+      with adjacent corruption. Always at least 8 bytes, since corruption is
+      detected on a 64-bit word basis.</dd>
+  <dt><b class="Sy" title="Sy">bad_range_sets</b></dt>
+  <dd>This array has one element per range in
+      <b class="Sy" title="Sy">bad_ranges</b>. Each element contains the count
+      of bits in that range which were clear in the good data and set in the bad
+      data.</dd>
+  <dt><b class="Sy" title="Sy">bad_range_clears</b></dt>
+  <dd>This array has one element per range in
+      <b class="Sy" title="Sy">bad_ranges</b>. Each element contains the count
+      of bits for that range which were set in the good data and clear in the
+      bad data.</dd>
+  <dt><b class="Sy" title="Sy">bad_set_bits</b></dt>
+  <dd>If this field exists, it is an array of (<var class="Ar" title="Ar">bad
+      data</var> <span class="No">&amp; ~(</span><var class="Ar" title="Ar">good
+      data</var>)); that is, the bits set in the bad data which are cleared in
+      the good data. Each element corresponds a byte whose offset is in a range
+      in <b class="Sy" title="Sy">bad_ranges</b>, and the array is ordered by
+      offset. Thus, the first element is the first byte in the first
+      <b class="Sy" title="Sy">bad_ranges</b> range, and the last element is the
+      last byte in the last <b class="Sy" title="Sy">bad_ranges</b> range.</dd>
+  <dt><b class="Sy" title="Sy">bad_cleared_bits</b></dt>
+  <dd>Like <b class="Sy" title="Sy">bad_set_bits</b>, but contains
+      (<var class="Ar" title="Ar">good data</var> <span class="No">&amp;
+      ~(</span><var class="Ar" title="Ar">bad data</var>)); that is, the bits
+      set in the good data which are cleared in the bad data.</dd>
+  <dt><b class="Sy" title="Sy">bad_set_histogram</b></dt>
+  <dd>If this field exists, it is an array of counters. Each entry counts bits
+      set in a particular bit of a big-endian uint64 type. The first entry
+      counts bits set in the high-order bit of the first byte, the 9th byte,
+      etc, and the last entry counts bits set of the low-order bit of the 8th
+      byte, the 16th byte, etc. This information is useful for observing a stuck
+      bit in a parallel data path, such as IDE or parallel SCSI.</dd>
+  <dt><b class="Sy" title="Sy">bad_cleared_histogram</b></dt>
+  <dd>If this field exists, it is an array of counters. Each entry counts bit
+      clears in a particular bit of a big-endian uint64 type. The first entry
+      counts bits clears of the high-order bit of the first byte, the 9th byte,
+      etc, and the last entry counts clears of the low-order bit of the 8th
+      byte, the 16th byte, etc. This information is useful for observing a stuck
+      bit in a parallel data path, such as IDE or parallel SCSI.</dd>
+</dl>
+<h1 class="Sh" title="Sh" id="I/O_STAGES"><a class="permalink" href="#I/O_STAGES">I/O
+  STAGES</a></h1>
+The ZFS I/O pipeline is comprised of various stages which are defined below. The
+  individual stages are used to construct these basic I/O operations: Read,
+  Write, Free, Claim, and Ioctl. These stages may be set on an event to describe
+  the life cycle of a given I/O request.
+<div class="Pp"></div>
+<table class="tbl">
+  <tr>
+    <td>Stage</td>
+    <td>Bit Mask</td>
+    <td>Operations</td>
+  </tr>
+  <tr>
+    <td>_</td>
+    <td>_</td>
+    <td>_</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_OPEN</td>
+    <td>0x00000001</td>
+    <td>RWFCI</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_READ_BP_INIT</td>
+    <td>0x00000002</td>
+    <td>R----</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_WRITE_BP_INIT</td>
+    <td>0x00000004</td>
+    <td>-W---</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_FREE_BP_INIT</td>
+    <td>0x00000008</td>
+    <td>--F--</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_ISSUE_ASYNC</td>
+    <td>0x00000010</td>
+    <td>RWF--</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_WRITE_COMPRESS</td>
+    <td>0x00000020</td>
+    <td>-W---</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_ENCRYPT</td>
+    <td>0x00000040</td>
+    <td>-W---</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_CHECKSUM_GENERATE</td>
+    <td>0x00000080</td>
+    <td>-W---</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_NOP_WRITE</td>
+    <td>0x00000100</td>
+    <td>-W---</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DDT_READ_START</td>
+    <td>0x00000200</td>
+    <td>R----</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DDT_READ_DONE</td>
+    <td>0x00000400</td>
+    <td>R----</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DDT_WRITE</td>
+    <td>0x00000800</td>
+    <td>-W---</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DDT_FREE</td>
+    <td>0x00001000</td>
+    <td>--F--</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_GANG_ASSEMBLE</td>
+    <td>0x00002000</td>
+    <td>RWFC-</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_GANG_ISSUE</td>
+    <td>0x00004000</td>
+    <td>RWFC-</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DVA_THROTTLE</td>
+    <td>0x00008000</td>
+    <td>-W---</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DVA_ALLOCATE</td>
+    <td>0x00010000</td>
+    <td>-W---</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DVA_FREE</td>
+    <td>0x00020000</td>
+    <td>--F--</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DVA_CLAIM</td>
+    <td>0x00040000</td>
+    <td>---C-</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_READY</td>
+    <td>0x00080000</td>
+    <td>RWFCI</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_VDEV_IO_START</td>
+    <td>0x00100000</td>
+    <td>RW--I</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_VDEV_IO_DONE</td>
+    <td>0x00200000</td>
+    <td>RW--I</td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_VDEV_IO_ASSESS</td>
+    <td>0x00400000</td>
+    <td>RW--I</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_CHECKSUM_VERIFY</td>
+    <td>0x00800000</td>
+    <td>R----</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_STAGE_DONE</td>
+    <td>0x01000000</td>
+    <td>RWFCI</td>
+  </tr>
+</table>
+<h1 class="Sh" title="Sh" id="I/O_FLAGS"><a class="permalink" href="#I/O_FLAGS">I/O
+  FLAGS</a></h1>
+Every I/O request in the pipeline contains a set of flags which describe its
+  function and are used to govern its behavior. These flags will be set in an
+  event as a <b class="Sy" title="Sy">zio_flags</b> payload entry.
+<div class="Pp"></div>
+<table class="tbl">
+  <tr>
+    <td>Flag</td>
+    <td>Bit Mask</td>
+  </tr>
+  <tr>
+    <td>_</td>
+    <td>_</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_DONT_AGGREGATE</td>
+    <td>0x00000001</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_IO_REPAIR</td>
+    <td>0x00000002</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_SELF_HEAL</td>
+    <td>0x00000004</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_RESILVER</td>
+    <td>0x00000008</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_SCRUB</td>
+    <td>0x00000010</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_SCAN_THREAD</td>
+    <td>0x00000020</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_PHYSICAL</td>
+    <td>0x00000040</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_CANFAIL</td>
+    <td>0x00000080</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_SPECULATIVE</td>
+    <td>0x00000100</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_CONFIG_WRITER</td>
+    <td>0x00000200</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_DONT_RETRY</td>
+    <td>0x00000400</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_DONT_CACHE</td>
+    <td>0x00000800</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_NODATA</td>
+    <td>0x00001000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_INDUCE_DAMAGE</td>
+    <td>0x00002000</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_IO_ALLOCATING</td>
+    <td>0x00004000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_IO_RETRY</td>
+    <td>0x00008000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_PROBE</td>
+    <td>0x00010000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_TRYHARD</td>
+    <td>0x00020000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_OPTIONAL</td>
+    <td>0x00040000</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_DONT_QUEUE</td>
+    <td>0x00080000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_DONT_PROPAGATE</td>
+    <td>0x00100000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_IO_BYPASS</td>
+    <td>0x00200000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_IO_REWRITE</td>
+    <td>0x00400000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_RAW_COMPRESS</td>
+    <td>0x00800000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_RAW_ENCRYPT</td>
+    <td>0x01000000</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_GANG_CHILD</td>
+    <td>0x02000000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_DDT_CHILD</td>
+    <td>0x04000000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_GODFATHER</td>
+    <td>0x08000000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_NOPWRITE</td>
+    <td>0x10000000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_REEXECUTED</td>
+    <td>0x20000000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_DELEGATED</td>
+    <td>0x40000000</td>
+  </tr>
+  <tr>
+    <td>ZIO_FLAG_FASTWRITE</td>
+    <td>0x80000000</td>
+  </tr>
+</table>
+<h1 class="Sh" title="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<a href="../4/zfs.4.html" class="Xr">zfs(4)</a>, <a class="Xr" title="Xr">zed(8)</a>,
+  <a href="../8/zpool-wait.8.html" class="Xr">zpool-wait(8)</a></div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">May 27, 2021</td>
+    <td class="foot-os">Debian</td>
+  </tr>
+</table>
+</div></div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="zpool-detach.8.html" class="btn btn-neutral float-left" title="zpool-detach.8" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="zpool-export.8.html" class="btn btn-neutral float-right" title="zpool-export.8" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arch Linux &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="archzfs repo" href="0-archzfs-repo.html" />
+    <link rel="prev" title="Getting Started" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../index.html"><img src="../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Arch Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contents">Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="0-archzfs-repo.html">archzfs repo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-zfs-linux.html">zfs-linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2-zfs-dkms.html">zfs-dkms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-live.html">Live image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Arch Linux Root on ZFS.html">Arch Linux Root on ZFS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#support">Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#live-image">Live image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#root-on-zfs">Root on ZFS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/0-overview.html">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/1-preparation.html">Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/2-system-installation.html">System Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/4-optional-configuration.html">Optional Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/5-bootloader.html">Bootloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Root on ZFS/6-recovery.html">Recovery</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#contribute">Contribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Debian/index.html">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Fedora/index.html">Fedora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD.html">FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS">Gentoo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NixOS/index.html">NixOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openSUSE/index.html">openSUSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RHEL-based distro/index.html">RHEL-based distro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Ubuntu/index.html">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Man Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+      <li>Arch Linux</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/openzfs/openzfs-docs/blob/master/docs/Getting Started/Arch Linux/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="arch-linux">
+<h1>Arch Linux<a class="headerlink" href="#arch-linux" title="Permalink to this headline"></a></h1>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="0-archzfs-repo.html">archzfs repo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-zfs-linux.html">zfs-linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-zfs-dkms.html">zfs-dkms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-live.html">Live image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Arch Linux Root on ZFS.html">Arch Linux Root on ZFS</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline"></a></h2>
+<p>Reach out to the community using the <a class="reference internal" href="../../Project and Community/Mailing Lists.html#mailing-lists"><span class="std std-ref">Mailing Lists</span></a> or IRC at
+<a class="reference external" href="ircs://irc.libera.chat/#zfsonlinux">#zfsonlinux</a> on <a class="reference external" href="https://libera.chat/">Libera Chat</a>.</p>
+<p>If you have a bug report or feature request
+related to this HOWTO, please <a class="reference external" href="https://github.com/openzfs/openzfs-docs/issues/new?body=&#64;ne9z,%20I%20have%20the%20following%20issue%20with%20the%20Arch%20Linux%20ZFS%20HOWTO:">file a new issue and mention &#64;ne9z</a>.</p>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>Due to license incompatibility,
+ZFS is not available in Arch Linux official repo.</p>
+<p>ZFS support is provided by third-party <a class="reference external" href="https://github.com/archzfs/archzfs">archzfs repo</a>.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<p>Note: this is for installing ZFS on an existing Arch
+Linux installation. To use ZFS as root file system,
+see below.</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="0-archzfs-repo.html">Add archzfs repo to pacman</a>.</p></li>
+<li><p>Install <a class="reference external" href="1-zfs-linux.html">zfs-linux*</a>
+or <a class="reference external" href="2-zfs-dkms.html">zfs-dkms</a> depending on your needs.
+See the respective pages for details.</p></li>
+</ol>
+</div>
+<div class="section" id="live-image">
+<h2>Live image<a class="headerlink" href="#live-image" title="Permalink to this headline"></a></h2>
+<p>Kernel package shipped with latest live image might
+not be compatible with ZFS, user should check kernel version
+following instructions <a class="reference external" href="3-live.html">here</a>.</p>
+</div>
+<div class="section" id="root-on-zfs">
+<h2>Root on ZFS<a class="headerlink" href="#root-on-zfs" title="Permalink to this headline"></a></h2>
+<p>ZFS can be used as root file system for Arch Linux.
+An installation guide is available.</p>
+<p><a class="reference external" href="Root%20on%20ZFS/0-overview.html">Start here</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/0-overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/1-preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/2-system-installation.html">System Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/4-optional-configuration.html">Optional Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/5-bootloader.html">Bootloader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/6-recovery.html">Recovery</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>Fork and clone <a class="reference external" href="https://github.com/openzfs/openzfs-docs">this repo</a>.</p></li>
+<li><p>Install the tools:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo pacman -S --needed python-pip make
+
+pip3 install -r docs/requirements.txt
+
+<span class="c1"># Add ~/.local/bin to your $PATH, e.g. by adding this to ~/.bashrc:</span>
+<span class="o">[</span> -d <span class="nv">$HOME</span>/.local/bin <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/bin:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</li>
+<li><p>Make your changes.</p></li>
+<li><p>Test:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs
+make html
+sensible-browser _build/html/index.html
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--signoff</span></code> to a branch, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, and create a pull
+request. Mention &#64;ne9z.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="0-archzfs-repo.html" class="btn btn-neutral float-right" title="archzfs repo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

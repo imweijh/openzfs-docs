@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zinject.8 &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="zpool-add.8" href="zpool-add.8.html" />
+    <link rel="prev" title="zgenhostid.8" href="zgenhostid.8.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../index.html"><img src="../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Getting Started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Man Pages</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1/index.html">User Commands (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4/index.html">Devices and Special Files (4)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5/index.html">File Formats and Conventions (5)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7/index.html">Miscellaneous (7)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">System Administration Commands (8)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fsck.zfs.8.html">fsck.zfs.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mount.zfs.8.html">mount.zfs.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vdev_id.8.html">vdev_id.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zdb.8.html">zdb.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-allow.8.html">zfs-allow.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-bookmark.8.html">zfs-bookmark.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-change-key.8.html">zfs-change-key.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-clone.8.html">zfs-clone.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-create.8.html">zfs-create.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-destroy.8.html">zfs-destroy.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-diff.8.html">zfs-diff.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-get.8.html">zfs-get.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-groupspace.8.html">zfs-groupspace.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-hold.8.html">zfs-hold.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-inherit.8.html">zfs-inherit.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-jail.8.html">zfs-jail.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-list.8.html">zfs-list.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-load-key.8.html">zfs-load-key.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-mount.8.html">zfs-mount.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-program.8.html">zfs-program.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-project.8.html">zfs-project.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-projectspace.8.html">zfs-projectspace.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-promote.8.html">zfs-promote.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-receive.8.html">zfs-receive.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-recv.8.html">zfs-recv.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-redact.8.html">zfs-redact.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-release.8.html">zfs-release.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-rename.8.html">zfs-rename.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-rollback.8.html">zfs-rollback.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-send.8.html">zfs-send.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-set.8.html">zfs-set.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-share.8.html">zfs-share.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-snapshot.8.html">zfs-snapshot.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unallow.8.html">zfs-unallow.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unjail.8.html">zfs-unjail.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unload-key.8.html">zfs-unload-key.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unmount.8.html">zfs-unmount.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-unzone.8.html">zfs-unzone.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-upgrade.8.html">zfs-upgrade.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-userspace.8.html">zfs-userspace.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-wait.8.html">zfs-wait.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs-zone.8.html">zfs-zone.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs.8.html">zfs.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zfs_ids_to_path.8.html">zfs_ids_to_path.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zgenhostid.8.html">zgenhostid.8</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">zinject.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-add.8.html">zpool-add.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-attach.8.html">zpool-attach.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-checkpoint.8.html">zpool-checkpoint.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-clear.8.html">zpool-clear.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-create.8.html">zpool-create.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-destroy.8.html">zpool-destroy.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-detach.8.html">zpool-detach.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-events.8.html">zpool-events.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-export.8.html">zpool-export.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-get.8.html">zpool-get.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-history.8.html">zpool-history.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-import.8.html">zpool-import.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-initialize.8.html">zpool-initialize.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-iostat.8.html">zpool-iostat.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-labelclear.8.html">zpool-labelclear.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-list.8.html">zpool-list.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-offline.8.html">zpool-offline.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-online.8.html">zpool-online.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-reguid.8.html">zpool-reguid.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-remove.8.html">zpool-remove.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-reopen.8.html">zpool-reopen.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-replace.8.html">zpool-replace.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-resilver.8.html">zpool-resilver.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-scrub.8.html">zpool-scrub.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-set.8.html">zpool-set.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-split.8.html">zpool-split.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-status.8.html">zpool-status.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-sync.8.html">zpool-sync.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-trim.8.html">zpool-trim.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-upgrade.8.html">zpool-upgrade.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool-wait.8.html">zpool-wait.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool.8.html">zpool.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zpool_influxdb.8.html">zpool_influxdb.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zstream.8.html">zstream.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zstreamdump.8.html">zstreamdump.8</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Man Pages</a> &raquo;</li>
+          <li><a href="index.html">System Administration Commands (8)</a> &raquo;</li>
+      <li>zinject.8</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/openzfs/zfs/blob/master/man/man8/zinject.8" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="zinject-8">
+<h1>zinject.8<a class="headerlink" href="#zinject-8" title="Permalink to this headline"></a></h1>
+<div class="man_container"><table class="head">
+  <tr>
+    <td class="head-ltitle">ZINJECT(8)</td>
+    <td class="head-vol">System Manager's Manual</td>
+    <td class="head-rtitle">ZINJECT(8)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<h1 class="Sh" title="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<code class="Nm" title="Nm">zinject</code> &#x2014;
+<div class="Nd" title="Nd">ZFS Fault Injector</div>
+<h1 class="Sh" title="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<code class="Nm" title="Nm">zinject</code> creates artificial problems in a ZFS
+  pool by simulating data corruption or device failures. This program is
+  dangerous.
+<h1 class="Sh" title="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<dl class="Bl-tag">
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>List injection records.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-b</code>
+        <var class="Ar" title="Ar">objset</var>:<var class="Ar" title="Ar">object</var>:<var class="Ar" title="Ar">level</var>:<var class="Ar" title="Ar">start</var>:<var class="Ar" title="Ar">end</var>
+        [<div class="Op"><code class="Fl" title="Fl">-f</code>
+        <var class="Ar" title="Ar">frequency</var></div>]
+        <code class="Fl" title="Fl">-amu</code>
+        [<div class="Op">pool</div>]</td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Force an error into the pool at a bookmark.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-c</code>
+        <var class="Ar" title="Ar">id</var>|<b class="Sy" title="Sy">all</b></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Cancel injection records.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-d</code>
+        <var class="Ar" title="Ar">vdev</var>
+        <code class="Fl" title="Fl">-A</code>
+        <b class="Sy" title="Sy">degrade</b>|<b class="Sy" title="Sy">fault</b>
+        <var class="Ar" title="Ar">pool</var></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Force a vdev into the DEGRADED or FAULTED state.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-d</code>
+        <var class="Ar" title="Ar">vdev</var>
+        <code class="Fl" title="Fl">-D</code>
+        <var class="Ar" title="Ar">latency</var>:<var class="Ar" title="Ar">lanes</var>
+        <var class="Ar" title="Ar">pool</var></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Add an artificial delay to I/O requests on a particular device, such that
+      the requests take a minimum of <var class="Ar" title="Ar">latency</var>
+      milliseconds to complete. Each delay has an associated number of
+      <var class="Ar" title="Ar">lanes</var> which defines the number of
+      concurrent I/O requests that can be processed.
+    <div class="Pp"></div>
+    For example, with a single lane delay of 10 ms
+      <span class="No">(</span><code class="Fl" title="Fl">-D</code>
+      <var class="Ar" title="Ar">10</var>:<var class="Ar" title="Ar">1</var>),
+      the device will only be able to service a single I/O request at a time
+      with each request taking 10 ms to complete. So, if only a single request
+      is submitted every 10 ms, the average latency will be 10 ms; but if more
+      than one request is submitted every 10 ms, the average latency will be
+      more than 10 ms.
+    <div class="Pp"></div>
+    Similarly, if a delay of 10 ms is specified to have two lanes
+      <span class="No">(</span><code class="Fl" title="Fl">-D</code>
+      <var class="Ar" title="Ar">10</var>:<var class="Ar" title="Ar">2</var>),
+      then the device will be able to service two requests at a time, each with
+      a minimum latency of 10 ms. So, if two requests are submitted every 10 ms,
+      then the average latency will be 10 ms; but if more than two requests are
+      submitted every 10 ms, the average latency will be more than 10 ms.
+    <div class="Pp"></div>
+    Also note, these delays are additive. So two invocations of
+      <code class="Fl" title="Fl">-D</code>
+      <var class="Ar" title="Ar">10</var>:<var class="Ar" title="Ar">1</var> are
+      roughly equivalent to a single invocation of
+      <code class="Fl" title="Fl">-D</code>
+      <var class="Ar" title="Ar">10</var>:<var class="Ar" title="Ar">2</var>.
+      This also means, that one can specify multiple lanes with differing target
+      latencies. For example, an invocation of
+      <code class="Fl" title="Fl">-D</code>
+      <var class="Ar" title="Ar">10</var>:<var class="Ar" title="Ar">1</var>
+      followed by <code class="Fl" title="Fl">-D</code>
+      <var class="Ar" title="Ar">25</var>:<var class="Ar" title="Ar">2</var>
+      will create 3 lanes on the device: one lane with a latency of 10 ms and
+      two lanes with a 25 ms latency.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-d</code>
+        <var class="Ar" title="Ar">vdev</var>
+        [<div class="Op"><code class="Fl" title="Fl">-e</code>
+        <var class="Ar" title="Ar">device_error</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-L</code>
+        <var class="Ar" title="Ar">label_error</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-T</code>
+        <var class="Ar" title="Ar">failure</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-f</code>
+        <var class="Ar" title="Ar">frequency</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-F</code></div>]
+        <var class="Ar" title="Ar">pool</var></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Force a vdev error.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-I</code>
+        [<div class="Op"><code class="Fl" title="Fl">-s</code>
+        <var class="Ar" title="Ar">seconds</var>|<code class="Fl" title="Fl">-g</code>
+        <var class="Ar" title="Ar">txgs</var></div>]
+        <var class="Ar" title="Ar">pool</var></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Simulate a hardware failure that fails to honor a cache flush.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-p</code>
+        <var class="Ar" title="Ar">function</var>
+        <var class="Ar" title="Ar">pool</var></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Panic inside the specified function.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-t</code>
+        <b class="Sy" title="Sy">data</b> <code class="Fl" title="Fl">-C</code>
+        <var class="Ar" title="Ar">dvas</var>
+        [<div class="Op"><code class="Fl" title="Fl">-e</code>
+        <var class="Ar" title="Ar">device_error</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-f</code>
+        <var class="Ar" title="Ar">frequency</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-l</code>
+        <var class="Ar" title="Ar">level</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-r</code>
+        <var class="Ar" title="Ar">range</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-amq</code></div>]
+        <var class="Ar" title="Ar">path</var></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Force an error into the contents of a file.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-t</code>
+        <b class="Sy" title="Sy">dnode</b> <code class="Fl" title="Fl">-C</code>
+        <var class="Ar" title="Ar">dvas</var>
+        [<div class="Op"><code class="Fl" title="Fl">-e</code>
+        <var class="Ar" title="Ar">device_error</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-f</code>
+        <var class="Ar" title="Ar">frequency</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-l</code>
+        <var class="Ar" title="Ar">level</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-amq</code></div>]
+        <var class="Ar" title="Ar">path</var></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Force an error into the metadnode for a file or directory.</dd>
+  <dt>
+  <table class="Nm">
+    <tr>
+      <td><code class="Nm" title="Nm">zinject</code></td>
+      <td><code class="Fl" title="Fl">-t</code>
+        <var class="Ar" title="Ar">mos_type</var>
+        <code class="Fl" title="Fl">-C</code>
+        <var class="Ar" title="Ar">dvas</var>
+        [<div class="Op"><code class="Fl" title="Fl">-e</code>
+        <var class="Ar" title="Ar">device_error</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-f</code>
+        <var class="Ar" title="Ar">frequency</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-l</code>
+        <var class="Ar" title="Ar">level</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-r</code>
+        <var class="Ar" title="Ar">range</var></div>]
+        [<div class="Op"><code class="Fl" title="Fl">-amqu</code></div>]
+        <var class="Ar" title="Ar">pool</var></td>
+    </tr>
+  </table>
+  </dt>
+  <dd>Force an error into the MOS of a pool.</dd>
+</dl>
+<h1 class="Sh" title="Sh" id="OPTIONS"><a class="permalink" href="#OPTIONS">OPTIONS</a></h1>
+<dl class="Bl-tag">
+  <dt><a class="permalink" href="#a"><code class="Fl" title="Fl" id="a">-a</code></a></dt>
+  <dd>Flush the ARC before injection.</dd>
+  <dt><a class="permalink" href="#b"><code class="Fl" title="Fl" id="b">-b</code></a>
+    <var class="Ar" title="Ar">objset</var>:<var class="Ar" title="Ar">object</var>:<var class="Ar" title="Ar">level</var>:<var class="Ar" title="Ar">start</var>:<var class="Ar" title="Ar">end</var></dt>
+  <dd>Force an error into the pool at this bookmark tuple. Each number is in
+      hexadecimal, and only one block can be specified.</dd>
+  <dt><a class="permalink" href="#C"><code class="Fl" title="Fl" id="C">-C</code></a>
+    <var class="Ar" title="Ar">dvas</var></dt>
+  <dd>Inject the given error only into specific DVAs. The mask should be
+      specified as a list of 0-indexed DVAs separated by commas
+      <span class="No">(e.g.</span>
+      <var class="Ar" title="Ar">0,2</var><span class="No">).</span> This option
+      is not applicable to logical data errors such as
+      <b class="Sy" title="Sy">decompress</b> and
+      <b class="Sy" title="Sy">decrypt</b>.</dd>
+  <dt><a class="permalink" href="#d"><code class="Fl" title="Fl" id="d">-d</code></a>
+    <var class="Ar" title="Ar">vdev</var></dt>
+  <dd>A vdev specified by path or GUID.</dd>
+  <dt><a class="permalink" href="#e"><code class="Fl" title="Fl" id="e">-e</code></a>
+    <var class="Ar" title="Ar">device_error</var></dt>
+  <dd>Specify
+    <dl class="Bl-tag Bl-compact">
+      <dt><b class="Sy" title="Sy">checksum</b></dt>
+      <dd>for an ECKSUM error,</dd>
+      <dt><b class="Sy" title="Sy">decompress</b></dt>
+      <dd>for a data decompression error,</dd>
+      <dt><b class="Sy" title="Sy">decrypt</b></dt>
+      <dd>for a data decryption error,</dd>
+      <dt><b class="Sy" title="Sy">corrupt</b></dt>
+      <dd>to flip a bit in the data after a read,</dd>
+      <dt><b class="Sy" title="Sy">dtl</b></dt>
+      <dd>for an ECHILD error,</dd>
+      <dt><b class="Sy" title="Sy">io</b></dt>
+      <dd>for an EIO error where reopening the device will succeed, or</dd>
+      <dt><b class="Sy" title="Sy">nxio</b></dt>
+      <dd>for an ENXIO error where reopening the device will fail.</dd>
+    </dl>
+    <div class="Pp"></div>
+    For EIO and ENXIO, the &quot;failed&quot; reads or writes still occur. The
+      probe simply sets the error value reported by the I/O pipeline so it
+      appears the read or write failed. Decryption errors only currently work
+      with file data.</dd>
+  <dt><a class="permalink" href="#f"><code class="Fl" title="Fl" id="f">-f</code></a>
+    <var class="Ar" title="Ar">frequency</var></dt>
+  <dd>Only inject errors a fraction of the time. Expressed as a real number
+      percentage between <b class="Sy" title="Sy">0.0001</b> and
+      <b class="Sy" title="Sy">100</b>.</dd>
+  <dt><a class="permalink" href="#F"><code class="Fl" title="Fl" id="F">-F</code></a></dt>
+  <dd>Fail faster. Do fewer checks.</dd>
+  <dt><a class="permalink" href="#f_2"><code class="Fl" title="Fl" id="f_2">-f</code></a>
+    <var class="Ar" title="Ar">txgs</var></dt>
+  <dd>Run for this many transaction groups before reporting failure.</dd>
+  <dt><a class="permalink" href="#h"><code class="Fl" title="Fl" id="h">-h</code></a></dt>
+  <dd>Print the usage message.</dd>
+  <dt><a class="permalink" href="#l"><code class="Fl" title="Fl" id="l">-l</code></a>
+    <var class="Ar" title="Ar">level</var></dt>
+  <dd>Inject an error at a particular block level. The default is
+      <b class="Sy" title="Sy">0</b>.</dd>
+  <dt><a class="permalink" href="#L"><code class="Fl" title="Fl" id="L">-L</code></a>
+    <var class="Ar" title="Ar">label_error</var></dt>
+  <dd>Set the label error region to one of <b class="Sy" title="Sy">nvlist</b>,
+      <b class="Sy" title="Sy">pad1</b>, <b class="Sy" title="Sy">pad2</b>, or
+      <b class="Sy" title="Sy">uber</b>.</dd>
+  <dt><a class="permalink" href="#m"><code class="Fl" title="Fl" id="m">-m</code></a></dt>
+  <dd>Automatically remount the underlying filesystem.</dd>
+  <dt><a class="permalink" href="#q"><code class="Fl" title="Fl" id="q">-q</code></a></dt>
+  <dd>Quiet mode. Only print the handler number added.</dd>
+  <dt><a class="permalink" href="#r"><code class="Fl" title="Fl" id="r">-r</code></a>
+    <var class="Ar" title="Ar">range</var></dt>
+  <dd>Inject an error over a particular logical range of an object, which will
+      be translated to the appropriate blkid range according to the object's
+      properties.</dd>
+  <dt><a class="permalink" href="#s"><code class="Fl" title="Fl" id="s">-s</code></a>
+    <var class="Ar" title="Ar">seconds</var></dt>
+  <dd>Run for this many seconds before reporting failure.</dd>
+  <dt><a class="permalink" href="#T"><code class="Fl" title="Fl" id="T">-T</code></a>
+    <var class="Ar" title="Ar">failure</var></dt>
+  <dd>Set the failure type to one of <b class="Sy" title="Sy">all</b>,
+      <b class="Sy" title="Sy">claim</b>, <b class="Sy" title="Sy">free</b>,
+      <b class="Sy" title="Sy">read</b>, or
+    <b class="Sy" title="Sy">write</b>.</dd>
+  <dt><a class="permalink" href="#t"><code class="Fl" title="Fl" id="t">-t</code></a>
+    <var class="Ar" title="Ar">mos_type</var></dt>
+  <dd>Set this to
+    <dl class="Bl-tag Bl-compact">
+      <dt><b class="Sy" title="Sy">mos</b></dt>
+      <dd>for any data in the MOS,</dd>
+      <dt><b class="Sy" title="Sy">mosdir</b></dt>
+      <dd>for an object directory,</dd>
+      <dt><b class="Sy" title="Sy">config</b></dt>
+      <dd>for the pool configuration,</dd>
+      <dt><b class="Sy" title="Sy">bpobj</b></dt>
+      <dd>for the block pointer list,</dd>
+      <dt><b class="Sy" title="Sy">spacemap</b></dt>
+      <dd>for the space map,</dd>
+      <dt><b class="Sy" title="Sy">metaslab</b></dt>
+      <dd>for the metaslab, or</dd>
+      <dt><b class="Sy" title="Sy">errlog</b></dt>
+      <dd>for the persistent error log.</dd>
+    </dl>
+  </dd>
+  <dt><a class="permalink" href="#u"><code class="Fl" title="Fl" id="u">-u</code></a></dt>
+  <dd>Unload the pool after injection.</dd>
+</dl>
+<h1 class="Sh" title="Sh" id="ENVIRONMENT_VARIABLES"><a class="permalink" href="#ENVIRONMENT_VARIABLES">ENVIRONMENT
+  VARIABLES</a></h1>
+<dl class="Bl-tag">
+  <dt><a class="permalink" href="#ZFS_HOSTID"><code class="Ev" title="Ev" id="ZFS_HOSTID">ZFS_HOSTID</code></a></dt>
+  <dd>Run <code class="Nm" title="Nm">zinject</code> in debug mode.</dd>
+</dl>
+<h1 class="Sh" title="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<a href="../8/zfs.8.html" class="Xr">zfs(8)</a>, <a href="../8/zpool.8.html" class="Xr">zpool(8)</a></div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">May 26, 2021</td>
+    <td class="foot-os">Debian</td>
+  </tr>
+</table>
+</div></div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="zgenhostid.8.html" class="btn btn-neutral float-left" title="zgenhostid.8" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="zpool-add.8.html" class="btn btn-neutral float-right" title="zpool-add.8" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

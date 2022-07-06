@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arch Linux Root on ZFS &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Overview" href="Root on ZFS/0-overview.html" />
+    <link rel="prev" title="Live image" href="3-live.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../index.html"><img src="../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Arch Linux</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="0-archzfs-repo.html">archzfs repo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-zfs-linux.html">zfs-linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2-zfs-dkms.html">zfs-dkms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-live.html">Live image</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Arch Linux Root on ZFS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#support">Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#live-image">Live image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#root-on-zfs">Root on ZFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#contribute">Contribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Debian/index.html">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Fedora/index.html">Fedora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD.html">FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS">Gentoo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NixOS/index.html">NixOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openSUSE/index.html">openSUSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RHEL-based distro/index.html">RHEL-based distro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Ubuntu/index.html">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Man Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+          <li><a href="index.html">Arch Linux</a> &raquo;</li>
+      <li>Arch Linux Root on ZFS</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/openzfs/openzfs-docs/blob/master/docs/Getting Started/Arch Linux/Arch Linux Root on ZFS.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="arch-linux-root-on-zfs">
+<h1>Arch Linux Root on ZFS<a class="headerlink" href="#arch-linux-root-on-zfs" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="Root%20on%20ZFS/0-overview.html">Start here</a>.</p>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/0-overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/0-overview.html#caution">Caution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/0-overview.html#partition-layout">Partition layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/0-overview.html#dataset-layout">Dataset layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/0-overview.html#encryption">Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/0-overview.html#booting-with-disk-failure">Booting with disk failure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/1-preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/2-system-installation.html">System Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/4-optional-configuration.html">Optional Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/4-optional-configuration.html#boot-environment-manager">Boot environment manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/4-optional-configuration.html#supply-password-with-ssh">Supply password with SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/4-optional-configuration.html#encrypt-boot-pool">Encrypt boot pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/4-optional-configuration.html#boot-live-iso-with-grub">Boot Live ISO with GRUB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/5-bootloader.html">Bootloader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/5-bootloader.html#apply-workarounds">Apply workarounds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/5-bootloader.html#install-grub">Install GRUB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/5-bootloader.html#finish-installation">Finish Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/5-bootloader.html#post-installaion">Post installaion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Root on ZFS/6-recovery.html">Recovery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/6-recovery.html#grub-tips">GRUB Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/6-recovery.html#access-system-in-chroot">Access system in chroot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Root on ZFS/6-recovery.html#backup-and-migrate-existing-installation">Backup and migrate existing installation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3-live.html" class="btn btn-neutral float-left" title="Live image" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Root on ZFS/0-overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bootloader &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Recovery" href="6-recovery.html" />
+    <link rel="prev" title="System Configuration" href="3-system-configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../../index.html"><img src="../../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../Arch Linux/index.html">Arch Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Debian/index.html">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Fedora/index.html">Fedora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../FreeBSD.html">FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS">Gentoo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../NixOS/index.html">NixOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openSUSE/index.html">openSUSE</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">RHEL-based distro</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#dkms">DKMS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#kabi-tracking-kmod">kABI-tracking kmod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#testing-repositories">Testing Repositories</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#rhel-8-based-distro-root-on-zfs">RHEL 8-based distro Root on ZFS</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="0-overview.html">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-preparation.html">Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2-system-installation.html">System Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bootloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="6-recovery.html">Recovery</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../Ubuntu/index.html">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../man/index.html">Man Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+          <li><a href="../index.html">RHEL-based distro</a> &raquo;</li>
+          <li><a href="../RHEL 8-based distro Root on ZFS.html">Rocky Linux 8 Root on ZFS</a> &raquo;</li>
+      <li>Bootloader</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/openzfs/openzfs-docs/blob/master/docs/Getting Started/RHEL-based distro/RHEL 8-based distro Root on ZFS/5-bootloader.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="bootloader">
+<h1>Bootloader<a class="headerlink" href="#bootloader" title="Permalink to this headline"></a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#apply-workarounds" id="id1">Apply workarounds</a></p></li>
+<li><p><a class="reference internal" href="#install-grub" id="id2">Install GRUB</a></p></li>
+<li><p><a class="reference internal" href="#finish-installation" id="id3">Finish Installation</a></p></li>
+<li><p><a class="reference internal" href="#post-installaion" id="id4">Post installaion</a></p></li>
+</ul>
+</div>
+<div class="section" id="apply-workarounds">
+<h2><a class="toc-backref" href="#id1">Apply workarounds</a><a class="headerlink" href="#apply-workarounds" title="Permalink to this headline"></a></h2>
+<p>Currently GRUB has multiple compatibility problems with ZFS,
+especially with regards to newer ZFS features.
+Workarounds have to be applied.</p>
+<ol class="arabic">
+<li><p>grub2-probe fails to get canonical path</p>
+<p>When persistent device names <code class="docutils literal notranslate"><span class="pre">/dev/disk/by-id/*</span></code> are used
+with ZFS, GRUB will fail to resolve the path of the boot pool
+device. Error:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># /usr/bin/grub2-probe: error: failed to get canonical path of `/dev/virtio-pci-0000:06:00.0-part3&#39;.</span>
+</pre></div>
+</div>
+<p>Solution:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;export ZPOOL_VDEV_NAME_PATH=YES&#39;</span> &gt;&gt; /etc/profile.d/zpool_vdev_name_path.sh
+<span class="nb">source</span> /etc/profile.d/zpool_vdev_name_path.sh
+</pre></div>
+</div>
+</li>
+<li><p>Pool name missing</p>
+<p>See <a class="reference external" href="https://savannah.gnu.org/bugs/?59614">this bug report</a>.
+Root pool name is missing from <code class="docutils literal notranslate"><span class="pre">root=ZFS=rpool_$INST_UUID/ROOT/default</span></code>
+kernel cmdline in generated <code class="docutils literal notranslate"><span class="pre">grub.cfg</span></code> file.</p>
+<p>A workaround is to replace the pool name detection with <code class="docutils literal notranslate"><span class="pre">zdb</span></code>
+command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sed -i <span class="s2">&quot;s|rpool=.*|rpool=\`zdb -l \${GRUB_DEVICE} \| grep -E &#39;[[:blank:]]name&#39; \| cut -d\\\&#39; -f 2\`|&quot;</span>  /etc/grub.d/10_linux
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="install-grub">
+<h2><a class="toc-backref" href="#id2">Install GRUB</a><a class="headerlink" href="#install-grub" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>If using virtio disk, add driver to initrd:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;filesystems+=&quot; virtio_blk &quot;&#39;</span> &gt;&gt; /etc/dracut.conf.d/fs.conf
+</pre></div>
+</div>
+</li>
+<li><p>Generate initrd:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rm -f /etc/zfs/zpool.cache
+touch /etc/zfs/zpool.cache
+chmod a-w /etc/zfs/zpool.cache
+chattr +i /etc/zfs/zpool.cache
+<span class="k">for</span> directory in /lib/modules/*<span class="p">;</span> <span class="k">do</span>
+  <span class="nv">kernel_version</span><span class="o">=</span><span class="k">$(</span>basename <span class="nv">$directory</span><span class="k">)</span>
+  dracut --force --kver <span class="nv">$kernel_version</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</li>
+<li><p>Load ZFS modules and disable BLS:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;GRUB_ENABLE_BLSCFG=false&#39;</span> &gt;&gt; /etc/default/grub
+</pre></div>
+</div>
+</li>
+<li><p>Create GRUB boot directory, in ESP and boot pool:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir -p /boot/efi/EFI/rocky        <span class="c1"># EFI GRUB dir</span>
+mkdir -p /boot/efi/EFI/rocky/grub2  <span class="c1"># legacy GRUB dir</span>
+mkdir -p /boot/grub2
+</pre></div>
+</div>
+<p>Boot environment-specific configuration (kernel, etc)
+is stored in <code class="docutils literal notranslate"><span class="pre">/boot/grub2/grub.cfg</span></code>, enabling rollback.</p>
+</li>
+<li><p>When in doubt, install both legacy boot
+and EFI.</p></li>
+<li><p>If using legacy booting, install GRUB to every disk:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+ grub2-install --boot-directory /boot/efi/EFI/rocky --target<span class="o">=</span>i386-pc <span class="nv">$i</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</li>
+<li><p>If using EFI:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="si">${</span><span class="nv">DISK</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+ efibootmgr -cgp <span class="m">1</span> -l <span class="s2">&quot;\EFI\rocky\shimx64.efi&quot;</span> <span class="se">\</span>
+ -L <span class="s2">&quot;rocky-</span><span class="si">${</span><span class="nv">i</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&quot;</span> -d <span class="si">${</span><span class="nv">i</span><span class="si">}</span>
+<span class="k">done</span>
+cp -r /usr/lib/grub/x86_64-efi/ /boot/efi/EFI/rocky
+</pre></div>
+</div>
+</li>
+<li><p>Generate GRUB Menu:</p>
+<p>Apply workaround:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tee /etc/grub.d/09_fix_root_on_zfs <span class="s">&lt;&lt;EOF</span>
+<span class="s">#!/bin/sh</span>
+<span class="s">echo &#39;insmod zfs&#39;</span>
+<span class="s">echo &#39;set root=(hd0,gpt2)&#39;</span>
+<span class="s">EOF</span>
+chmod +x /etc/grub.d/09_fix_root_on_zfs
+</pre></div>
+</div>
+<p>Generate menu:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>grub2-mkconfig -o /boot/efi/EFI/rocky/grub.cfg
+cp /boot/efi/EFI/rocky/grub.cfg /boot/efi/EFI/rocky/grub2/grub.cfg
+cp /boot/efi/EFI/rocky/grub.cfg /boot/grub2/grub.cfg
+</pre></div>
+</div>
+<p>The following errors may be safely ignored:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">device-mapper:</span> <span class="pre">reload</span> <span class="pre">ioctl</span> <span class="pre">on</span> <span class="pre">osprober-linux-sda2</span> <span class="pre">(253:0)</span> <span class="pre">failed:</span> <span class="pre">Device</span> <span class="pre">or</span> <span class="pre">resource</span> <span class="pre">busy</span></code>
+This is caused by os-prober probing OS on the partitions used by ZFS,
+harmless but os-prober can be disabled by:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nv">GRUB_DISABLE_OS_PROBER</span><span class="o">=</span><span class="nb">true</span> &gt;&gt; /etc/default/grub
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/usr/sbin/grub2-probe:</span> <span class="pre">error:</span> <span class="pre">../grub-core/kern/fs.c:120:unknown</span> <span class="pre">filesystem.</span></code>
+This is fixed by /etc/grub.d/09_fix_root_on_zfs</p></li>
+</ul>
+</li>
+<li><p>For both legacy and EFI booting: mirror ESP content:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">ESP_MIRROR</span><span class="o">=</span><span class="k">$(</span>mktemp -d<span class="k">)</span>
+<span class="nb">unalias</span> -a
+cp -r /boot/efi/EFI <span class="nv">$ESP_MIRROR</span>
+<span class="k">for</span> i in /boot/efis/*<span class="p">;</span> <span class="k">do</span>
+ cp -r <span class="nv">$ESP_MIRROR</span>/EFI <span class="nv">$i</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</li>
+<li><p>Automatically regenerate GRUB menu on kernel update:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tee /etc/dnf/plugins/post-transaction-actions.d/00-update-grub-menu-for-kernel.action <span class="s">&lt;&lt;EOF &gt;/dev/null</span>
+<span class="s"># kernel-core package contains vmlinuz and initramfs</span>
+<span class="s"># change package name if non-standard kernel is used</span>
+<span class="s">kernel-core:in:/usr/local/sbin/update-grub-menu.sh</span>
+<span class="s">kernel-core:out:/usr/local/sbin/update-grub-menu.sh</span>
+<span class="s">EOF</span>
+
+tee /usr/local/sbin/update-grub-menu.sh <span class="s">&lt;&lt;-&#39;EOF&#39; &gt;/dev/null</span>
+<span class="s">#!/bin/sh</span>
+<span class="s">export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span>
+<span class="s">export ZPOOL_VDEV_NAME_PATH=YES</span>
+<span class="s">source /etc/os-release</span>
+<span class="s">grub2-mkconfig -o /boot/efi/EFI/${ID}/grub.cfg</span>
+<span class="s">cp /boot/efi/EFI/${ID}/grub.cfg /boot/efi/EFI/${ID}/grub2/grub.cfg</span>
+<span class="s">cp /boot/efi/EFI/${ID}/grub.cfg /boot/grub2/grub.cfg</span>
+<span class="s">ESP_MIRROR=$(mktemp -d)</span>
+<span class="s">cp -r /boot/efi/EFI $ESP_MIRROR</span>
+<span class="s">for i in /boot/efis/*; do</span>
+<span class="s"> cp -r $ESP_MIRROR/EFI $i</span>
+<span class="s">done</span>
+<span class="s">rm -rf $ESP_MIRROR</span>
+<span class="s">EOF</span>
+
+chmod +x /usr/local/sbin/update-grub-menu.sh
+</pre></div>
+</div>
+</li>
+<li><p>Notes for GRUB on RHEL</p>
+<p>To support Secure Boot, GRUB has been heavily modified by Fedora,
+namely:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grub2-install</span></code> is <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1917213">disabled for UEFI</a></p></li>
+<li><p>Only a static, signed version of bootloader is copied to EFI system partition</p></li>
+<li><p>This signed bootloader does not have built-in support for either ZFS or LUKS containers</p></li>
+<li><p>This signed bootloader only loads configuration from <code class="docutils literal notranslate"><span class="pre">/boot/efi/EFI/fedora/grub.cfg</span></code></p></li>
+</ul>
+<p>Unrelated to Secure Boot, GRUB has also been modified to provide optional
+support for <a class="reference external" href="https://systemd.io/BOOT_LOADER_SPECIFICATION/">systemd bootloader specification (bls)</a>.
+Currently <code class="docutils literal notranslate"><span class="pre">blscfg.mod</span></code> is incompatible with root on ZFS.</p>
+<p>As bls is disabled, you will need to regenerate GRUB menu after each kernel upgrade.
+Or else the new kernel will not be recognized and system will boot the old kernel
+on reboot.</p>
+<p>Also see <a class="reference external" href="https://docs.fedoraproject.org/en-US/fedora/rawhide/system-administrators-guide/kernel-module-driver-configuration/Working_with_the_GRUB_2_Boot_Loader/">Fedora docs for GRUB</a>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="finish-installation">
+<h2><a class="toc-backref" href="#id3">Finish Installation</a><a class="headerlink" href="#finish-installation" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>Exit chroot:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+</pre></div>
+</div>
+</li>
+<li><p>Take a snapshot of the clean installation for future use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zfs snapshot -r rpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>@install
+zfs snapshot -r bpool_<span class="nv">$INST_UUID</span>/<span class="nv">$INST_ID</span>@install
+</pre></div>
+</div>
+</li>
+<li><p>Unmount EFI system partition:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>umount /mnt/boot/efi
+umount /mnt/boot/efis/*
+</pre></div>
+</div>
+</li>
+<li><p>Export pools:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>zpool <span class="nb">export</span> bpool_<span class="nv">$INST_UUID</span>
+zpool <span class="nb">export</span> rpool_<span class="nv">$INST_UUID</span>
+</pre></div>
+</div>
+</li>
+<li><p>Reboot:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>reboot
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="post-installaion">
+<h2><a class="toc-backref" href="#id4">Post installaion</a><a class="headerlink" href="#post-installaion" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>If you have other data pools, generate list of datasets for <a class="reference external" href="https://manpages.ubuntu.com/manpages/focal/man8/zfs-mount-generator.8.html">zfs-mount-generator</a> to mount them at boot:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">DATA_POOL</span><span class="o">=</span><span class="s1">&#39;tank0 tank1&#39;</span>
+
+<span class="c1"># tab-separated zfs properties</span>
+<span class="c1"># see /etc/zfs/zed.d/history_event-zfs-list-cacher.sh</span>
+<span class="nb">export</span> <span class="se">\</span>
+<span class="nv">PROPS</span><span class="o">=</span><span class="s2">&quot;name,mountpoint,canmount,atime,relatime,devices,exec\</span>
+<span class="s2">,readonly,setuid,nbmand,encroot,keylocation&quot;</span>
+
+<span class="k">for</span> i in <span class="nv">$DATA_POOL</span><span class="p">;</span> <span class="k">do</span>
+zfs list -H -t filesystem -o <span class="nv">$PROPS</span> -r <span class="nv">$i</span> &gt; /etc/zfs/zfs-list.cache/<span class="nv">$i</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</li>
+<li><p>After reboot, consider adding a normal user:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># with root permissions</span>
+sudo -i
+
+<span class="c1"># store user name in a variable</span>
+<span class="nv">myUser</span><span class="o">=</span>UserName
+
+<span class="c1"># rename default `User` to new user name</span>
+zfs rename <span class="k">$(</span>df --output<span class="o">=</span><span class="nb">source</span> /home <span class="p">|</span> tail -n +2<span class="k">)</span>/User <span class="k">$(</span>df --output<span class="o">=</span><span class="nb">source</span> /home <span class="p">|</span> tail -n +2<span class="k">)</span>/<span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>
+
+<span class="c1"># update entry in fstab</span>
+sed -i <span class="s2">&quot;s|/home/User|/home/</span><span class="si">${</span><span class="nv">myUser</span><span class="si">}</span><span class="s2">|g&quot;</span> /etc/fstab
+
+<span class="c1"># add user</span>
+useradd --no-create-home --user-group --home-dir /home/<span class="si">${</span><span class="nv">myUser</span><span class="si">}</span> --comment <span class="s1">&#39;My Name&#39;</span> <span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>
+
+<span class="c1"># delegate snapshot and destroy permissions of the home dataset to</span>
+<span class="c1"># new user</span>
+zfs allow -u <span class="si">${</span><span class="nv">myUser</span><span class="si">}</span> mount,snapshot,destroy <span class="k">$(</span>df --output<span class="o">=</span><span class="nb">source</span> /home <span class="p">|</span> tail -n +2<span class="k">)</span>/<span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>
+
+<span class="c1"># fix permissions</span>
+chown --recursive <span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>:<span class="si">${</span><span class="nv">myUser</span><span class="si">}</span> /home/<span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>
+chmod <span class="m">700</span> /home/<span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>
+
+<span class="c1"># fix selinux context</span>
+restorecon /home/<span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>
+
+<span class="c1"># set new password for user</span>
+passwd <span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Set up cron job to snapshot user home everyday:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dnf install cronie
+systemctl <span class="nb">enable</span> --now crond
+crontab -eu <span class="si">${</span><span class="nv">myUser</span><span class="si">}</span>
+<span class="c1">#@daily zfs snap $(df --output=source /home/${myUser} | tail -n +2)@$(dd if=/dev/urandom of=/dev/stdout bs=1 count=100 2&gt;/dev/null |tr -dc &#39;a-z0-9&#39; | cut -c-6)</span>
+zfs list -t snapshot -S creation <span class="k">$(</span>df --output<span class="o">=</span><span class="nb">source</span> /home/<span class="si">${</span><span class="nv">myUser</span><span class="si">}</span> <span class="p">|</span> tail -n +2<span class="k">)</span>
+</pre></div>
+</div>
+<p>Install package groups:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dnf group list --hidden -v       <span class="c1"># query package groups</span>
+dnf group install <span class="s1">&#39;Virtualization Host&#39;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3-system-configuration.html" class="btn btn-neutral float-left" title="System Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="6-recovery.html" class="btn btn-neutral float-right" title="Recovery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

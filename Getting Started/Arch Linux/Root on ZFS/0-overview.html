@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; OpenZFS  documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/mandoc.css" type="text/css" /><link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Preparation" href="1-preparation.html" />
+    <link rel="prev" title="Arch Linux Root on ZFS" href="../Arch Linux Root on ZFS.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #29667e" >
+            <a href="../../../index.html"><img src="../../../_static/logo_main.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Arch Linux</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#support">Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#live-image">Live image</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#root-on-zfs">Root on ZFS</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-preparation.html">Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2-system-installation.html">System Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-system-configuration.html">System Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-optional-configuration.html">Optional Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="5-bootloader.html">Bootloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="6-recovery.html">Recovery</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#contribute">Contribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../Debian/index.html">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Fedora/index.html">Fedora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../FreeBSD.html">FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS">Gentoo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../NixOS/index.html">NixOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openSUSE/index.html">openSUSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../RHEL-based distro/index.html">RHEL-based distro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Ubuntu/index.html">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Project and Community/index.html">Project and Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer Resources/index.html">Developer Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Performance and Tuning/index.html">Performance and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Basic Concepts/index.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../man/index.html">Man Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../msg/index.html">ZFS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../License.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #29667e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenZFS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+          <li><a href="../index.html">Arch Linux</a> &raquo;</li>
+          <li><a href="../Arch Linux Root on ZFS.html">Arch Linux Root on ZFS</a> &raquo;</li>
+      <li>Overview</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/openzfs/openzfs-docs/blob/master/docs/Getting Started/Arch Linux/Root on ZFS/0-overview.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h1>
+<p>This document describes how to install Arch Linux with ZFS as root
+file system.</p>
+<div class="section" id="caution">
+<h2>Caution<a class="headerlink" href="#caution" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>This guide wipes entire physical disks. Back up existing data.</p></li>
+<li><p><a class="reference external" href="http://savannah.gnu.org/bugs/?46700">GRUB does not and
+will not work on 4Kn drive with legacy (BIOS) booting.</a></p></li>
+</ul>
+</div>
+<div class="section" id="partition-layout">
+<h2>Partition layout<a class="headerlink" href="#partition-layout" title="Permalink to this headline"></a></h2>
+<p>GUID partition table (GPT) is used.
+EFI system partition will be referred to as <strong>ESP</strong> in this document.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 14%" />
+<col style="width: 15%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>legacy boot</p></th>
+<th class="head"><p>ESP</p></th>
+<th class="head"><p>Boot pool</p></th>
+<th class="head"><p>swap</p></th>
+<th class="head"><p>root pool</p></th>
+<th class="head"><p>remaining space</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>File system</p></td>
+<td></td>
+<td><p>vfat</p></td>
+<td><p>ZFS</p></td>
+<td><p>swap</p></td>
+<td><p>ZFS</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Size</p></td>
+<td><p>1M</p></td>
+<td><p>4G, or 1G w/o ISO</p></td>
+<td><p>4G</p></td>
+<td><p>depends on RAM size</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Optional encryption</p></td>
+<td></td>
+<td><p><em>Secure Boot</em></p></td>
+<td><p>luks 1</p></td>
+<td><p>plain dm-crypt or
+luks2</p></td>
+<td><p>ZFS native encryption</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Partition no.</p></td>
+<td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Mount point</p></td>
+<td></td>
+<td><p>/boot/efi
+/boot/efis/disk-part1</p></td>
+<td><p>/boot</p></td>
+<td></td>
+<td><p>/</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="dataset-layout">
+<h2>Dataset layout<a class="headerlink" href="#dataset-layout" title="Permalink to this headline"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>canmount</p></th>
+<th class="head"><p>mountpoint</p></th>
+<th class="head"><p>container</p></th>
+<th class="head"><p>notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bpool</p></td>
+<td><p>off</p></td>
+<td><p>/boot</p></td>
+<td><p>contains sys</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>rpool</p></td>
+<td><p>off</p></td>
+<td><p>/</p></td>
+<td><p>contains sys</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>bpool/sys</p></td>
+<td><p>off</p></td>
+<td><p>none</p></td>
+<td><p>contains BOOT</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>rpool/sys</p></td>
+<td><p>off</p></td>
+<td><p>none</p></td>
+<td><p>contains ROOT</p></td>
+<td><p>sys is encryptionroot</p></td>
+</tr>
+<tr class="row-even"><td><p>bpool/sys/BOOT</p></td>
+<td><p>off</p></td>
+<td><p>none</p></td>
+<td><p>contains boot environments</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>rpool/sys/ROOT</p></td>
+<td><p>off</p></td>
+<td><p>none</p></td>
+<td><p>contains boot environments</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rpool/sys/DATA</p></td>
+<td><p>off</p></td>
+<td><p>none</p></td>
+<td><p>contains placeholder “default”</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>rpool/sys/DATA/default</p></td>
+<td><p>off</p></td>
+<td><p>/</p></td>
+<td><p>contains user datasets</p></td>
+<td><p>child datsets inherits mountpoint</p></td>
+</tr>
+<tr class="row-even"><td><p>rpool/sys/DATA/default/
+home</p></td>
+<td><p>on</p></td>
+<td><p>/home (inherited)</p></td>
+<td><p>no</p></td>
+<td><p>user datasets, also called “shared
+datasets”, “persistent datasets”; also
+include /var/lib, /srv, …</p></td>
+</tr>
+<tr class="row-odd"><td><p>bpool/sys/BOOT/default</p></td>
+<td><p>noauto</p></td>
+<td><p>/boot</p></td>
+<td><p>no</p></td>
+<td><p>noauto is used to switch BE. because of
+noauto, must use fstab to mount</p></td>
+</tr>
+<tr class="row-even"><td><p>rpool/sys/ROOT/default</p></td>
+<td><p>noauto</p></td>
+<td><p>/</p></td>
+<td><p>no</p></td>
+<td><p>mounted by initrd zfs hook</p></td>
+</tr>
+<tr class="row-odd"><td><p>bpool/sys/BOOT/be1</p></td>
+<td><p>noauto</p></td>
+<td><p>/boot</p></td>
+<td><p>no</p></td>
+<td><p>see bpool/sys/BOOT/default</p></td>
+</tr>
+<tr class="row-even"><td><p>rpool/sys/ROOT/be1</p></td>
+<td><p>noauto</p></td>
+<td><p>/</p></td>
+<td><p>no</p></td>
+<td><p>see rpool/sys/ROOT/default</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="encryption">
+<h2>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>Swap</p>
+<p>Swap is always encrypted. By default, swap is encrypted
+with plain dm-crypt with key generated from <code class="docutils literal notranslate"><span class="pre">/dev/urandom</span></code>
+at every boot. Swap content does not persist between reboots.</p>
+<p>LUKS2-encrypted persistent swap can be
+enabled after encrypting both boot pool and root pool, see below.</p>
+<p>With persistent swap, hibernation (suspend-to-disk) can be enabled.</p>
+</li>
+<li><p>Root pool</p>
+<p>ZFS native encryption can be optionally enabled for <code class="docutils literal notranslate"><span class="pre">rpool/sys</span></code>
+and child datasets.</p>
+<p>User should be aware that, ZFS native encryption does not
+encrypt some metadata of the datasets.
+ZFS native encryption also does not change master key when <code class="docutils literal notranslate"><span class="pre">zfs</span> <span class="pre">change-key</span></code> is invoked.
+Therefore, you should wipe the disk when password is compromised to protect confidentiality.
+See <a class="reference external" href="https://openzfs.github.io/openzfs-docs/man/8/zfs-load-key.8.html">zfs-load-key.8</a>
+and <a class="reference external" href="https://openzfs.github.io/openzfs-docs/man/8/zfs-change-key.8.html">zfs-change-key.8</a>
+for more information regarding ZFS native encryption.</p>
+<p>Encryption is enabled at dataset creation and can not be disabled later.
+Password can be supplied via SSH.</p>
+</li>
+<li><p>Boot pool</p>
+<p>After encrypting root pool, boot pool can also be encrypted with LUKS1.
+This protects initrd from attacks and also protects key material in initrd.</p>
+<p>Password must be interactively entered at boot in GRUB. This disables
+password with SSH.</p>
+</li>
+<li><p>Bootloader</p>
+<p>Bootloader can not be encrypted.</p>
+<p>However, with Secure Boot, bootloader
+can be verified by motherboard firmware to be untempered,
+which should be sufficient for most purposes.</p>
+<p>As enabling Secure Boot is device specific, this is not
+covered in detail.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="booting-with-disk-failure">
+<h2>Booting with disk failure<a class="headerlink" href="#booting-with-disk-failure" title="Permalink to this headline"></a></h2>
+<p>This guide is written with disk failure in mind.</p>
+<p>If disks used in Root on ZFS pool failed, but
+sufficient redundancy for both root pool and boot pool
+still exists, the system will still boot normally.</p>
+<p>Swap partition on the failed disk will fail to mount,
+after an 1m30s timeout.</p>
+<p>This feature is useful for use cases such
+as an unattended remote server.</p>
+<p>Example:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>System has disks <code class="docutils literal notranslate"><span class="pre">n&gt;1</span></code></p></li>
+<li><p>Installed with mirrored setup</p></li>
+<li><p>Mirrored setup can tolerate up to <code class="docutils literal notranslate"><span class="pre">n-1</span></code> disk failures</p></li>
+<li><p>Disconnect one or more disks, keep at least
+one disk connected</p></li>
+<li><p>System still boots, but fails to mount swap and
+EFI partition</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Arch Linux Root on ZFS.html" class="btn btn-neutral float-left" title="Arch Linux Root on ZFS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1-preparation.html" class="btn btn-neutral float-right" title="Preparation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, OpenZFS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
